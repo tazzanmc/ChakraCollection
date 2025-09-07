@@ -1,0 +1,40 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]] #   CHAK
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+    if eval.edition then effects[#effects+1] = eval end'''
+match_indent = true
+position = "at"
+payload = '''
+    if next(eval) then effects[#effects+1] = eval end'''
+
+[[patches]] #   CHAK
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+    if G.GAME.modifiers.enable_rentals_in_shop and pseudorandom((area == G.pack_cards and 'packssjr' or 'ssjr')..G.GAME.round_resets.ante) > 0.7 and not SMODS.Stickers["rental"].should_apply then
+        card:set_rental(true)
+    end'''
+match_indent = true
+position = "after"
+payload = '''
+if G.GAME.modifiers.enable_ethereal_in_shop and pseudorandom((area == G.pack_cards and 'packeth' or 'eth')..G.GAME.round_resets.ante) > 0.8 then
+    card:add_sticker('chak_ethereal', true)
+end'''
+
+[[patches]]  #   CHAK
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "if add and not G.GAME.banned_keys[v.key] then "
+position = "before"
+match_indent = true
+payload = '''
+if G.GAME.chak.banned_run_keys[v.key] then
+  add = nil
+end
+'''

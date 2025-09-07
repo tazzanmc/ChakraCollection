@@ -1,0 +1,68 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "globals.lua"
+pattern = "RENTAL = HEX('b18f43'),"
+position = "after"
+match_indent = true
+payload = '''
+--  CHAK START
+CHAK_ETHEREAL = HEX('6059a0'),
+CHAK_ETERNAL = HEX('9e4d6e'),
+CHAK_PERISHABLE = HEX('4f5da1'),
+CHAK_RENTAL = HEX('b18f43'),
+CHAK_TOKEN = HEX('B5B4B1'),
+--  CHAK END
+'''
+
+[[patches]]
+[patches.pattern]
+target = "functions/misc_functions.lua"
+pattern = "G.ARGS.LOC_COLOURS = G.ARGS.LOC_COLOURS or {"
+position = "after"
+match_indent = true
+payload = '''
+--  CHAK START
+chak_ethereal = G.C.CHAK_ETHEREAL,
+chak_eternal = G.C.CHAK_ETERNAL,
+chak_perishable = G.C.CHAK_PERISHABLE,
+chak_rental = G.C.CHAK_RENTAL,
+chak_edition = G.C.CHAK_EDITION,
+chak_sticker_ethereal = G.C.CHAK_STICKER_ETHEREAL,
+chak_token = G.C.CHAK_TOKEN,
+--  CHAK END
+'''
+
+[[patches]] #   CHAK
+[patches.pattern]
+target = 'globals.lua'
+pattern = '''DARK_EDITION = {0,0,0,1},'''
+position = "before"
+match_indent = true
+payload = '''
+--  CHAK START
+CHAK_EDITION = {0,1,1,1},
+CHAK_STICKER_ETHEREAL = {0,1,1,1},
+--  CHAK END
+'''
+
+[[patches]] #   CHAK
+[patches.pattern]
+target = 'game.lua'
+pattern = '''self.C.DARK_EDITION[1] = 0.6+0.2*math.sin(self.TIMERS.REAL*1.3)'''
+position = "before"
+match_indent = true
+payload = '''
+--  CHAK START
+self.C.CHAK_EDITION[1] = 0.1+0.2*(1- math.sin(self.TIMERS.REAL*1.25))
+self.C.CHAK_EDITION[2] = 0.65+0.2*math.sin(self.TIMERS.REAL*1.35)
+self.C.CHAK_EDITION[3] = 0.2+0.2*(1- math.sin(self.TIMERS.REAL*1.2))
+self.C.CHAK_STICKER_ETHEREAL[1] = 0.2+0.2*(0.9- math.sin((self.TIMERS.REAL+2.5)*1.25))
+self.C.CHAK_STICKER_ETHEREAL[2] = 0.4+0.2*(0.85- math.sin(self.TIMERS.REAL*1.25))
+self.C.CHAK_STICKER_ETHEREAL[3] = 0.9+0.03*(0.8- math.sin(self.TIMERS.REAL*1.01))
+--  CHAK END
+'''
