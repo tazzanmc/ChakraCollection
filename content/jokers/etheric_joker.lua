@@ -15,5 +15,8 @@ CHAK_UTIL.TokenJoker{ -- Always destroyed instead of ethereal
     discovered = true, --whether or not it starts discovered
     blueprint_compat = false, --can it be blueprinted/brainstormed/other
     eternal_compat = false, --can it be eternal
-    perishable_compat = true --can it be perishable
+    perishable_compat = true, --can it be perishable
+    loc_vars = function(self, info_queue, center)
+      info_queue[#info_queue+1] = {key = 'chak_ethereal', set = 'Other'}
+    end
 }

@@ -14,7 +14,7 @@ SMODS.Consumable{ -- Chance to remove eternal/rental/perishable
     },
     config = {
         extra = {
-            odds = 3,
+            odds = 2,
             jokersselected = 1
         }
     },

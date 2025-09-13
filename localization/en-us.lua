@@ -42,6 +42,7 @@ return {
         dictionary = {
             chak_chakra_pack = "Chakra Pack",
             k_chak_token = "Token",
+            k_chips = "Chips"
         },
         labels = {
             chak_token = "Token",

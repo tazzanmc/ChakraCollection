@@ -18,6 +18,9 @@ SMODS.Joker{ -- Hearts in hand ignite
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
     eternal_compat = true, --can it be eternal
     perishable_compat = true, --can it be perishable
+    loc_vars = function(self, info_queue, center)
+        info_queue[#info_queue + 1] = G.P_CENTERS.e_chak_ignited
+    end,
     calculate = function(self, card, context)
         if context.cardarea == G.jokers and context.end_of_round then
             local targets = {}

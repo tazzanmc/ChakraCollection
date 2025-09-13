@@ -35,7 +35,10 @@ CHAK_UTIL.JOKERS = {
     "the_grill_master",
     "joe_joker",
     "black_lotus",
-    "mox_lotus"
+    "mox_lotus",
+    "encrusted_joker",
+    "derk",
+    "fading_memory"
 }
 
 CHAK_UTIL.CHAKRAS = {

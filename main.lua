@@ -274,14 +274,14 @@ SMODS.Sticker{
         if card.ability.perishable then 
             card:remove_sticker('perishable') 
         end
-        if G.GAME.modifiers.omicron == true and not (card.edition and card.edition.negative) then
+        if G.GAME.modifiers.omicron == true and card.config.center.rarity ~= "chak_Token" and not (card.edition and card.edition.negative) then
             card:set_edition({negative = true})
             card.cost = 1
             card.sell_cost = 0
         end
     end,
     calculate = function(self, card, context)
-        if G.GAME.modifiers.omicron == true and not (card.edition and card.edition.negative) then
+        if G.GAME.modifiers.omicron == true and card.config.center.rarity ~= "chak_Token" and not (card.edition and card.edition.negative) then
             card:set_edition({negative = true})
             card.cost = 1
             card.sell_cost = 0

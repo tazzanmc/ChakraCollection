@@ -20,8 +20,8 @@ SMODS.Joker{ -- Spawn common, uncommon, rare, negative, ethereal jokers
     eternal_compat = true, --can it be eternal
     perishable_compat = true, --can it be perishable
     loc_vars = function(self, info_queue, center)
-        info_queue[#info_queue+1] = {key = 'chak_ethereal', set = 'Other'}
         info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
+        info_queue[#info_queue+1] = {key = 'chak_ethereal', set = 'Other'}
     end,
     calculate = function(self, card, context)
         if context.setting_blind then

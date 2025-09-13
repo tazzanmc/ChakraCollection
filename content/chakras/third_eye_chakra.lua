@@ -32,7 +32,7 @@ SMODS.Consumable{ -- Create negative, ethereal copy of Joker
     end,
     use = function(self,card,area,copier)
         for i = 1, #G.jokers.highlighted do 
-            if G.jokers.highlighted[i].edition and G.jokers.highlighted[i].edition.negative then
+            if (G.jokers.highlighted[i].edition and G.jokers.highlighted[i].edition.negative) or G.jokers.highlighted[i].config.center.rarity == "chak_Token" then
                     CHAK_UTIL.use_consumable_animation(card, nil, function()
                         --for every card in jokers highlighted
                         local copied_joker = copy_card(G.jokers.highlighted[i])
