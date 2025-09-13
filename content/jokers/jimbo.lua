@@ -29,7 +29,7 @@ SMODS.Joker{ -- Spawn Joe Jokers, give mult for each Joker
     loc_vars = function(self, info_queue, center)
         info_queue[#info_queue+1] = {key = 'chak_ethereal', set = 'Other'}
         info_queue[#info_queue + 1] = G.P_CENTERS.j_chak_joe_joker
-        return { vars = { self.config.extra.Xmult, self.config.extra.Xmult * (G.jokers and #G.jokers.cards or 0) } }
+        return { vars = { self.config.extra.Xmult, self.config.extra.Xmult * (G.jokers and #G.jokers.cards or 0) + 1 } }
     end,
     calculate = function(self,card,context)
         if context.setting_blind and context.cardarea == G.jokers and not context.blueprint then
@@ -47,7 +47,7 @@ SMODS.Joker{ -- Spawn Joe Jokers, give mult for each Joker
         end
         if context.joker_main then
             return {
-                xmult = card.ability.extra.Xmult * (G.jokers and #G.jokers.cards or 0)
+                xmult = card.ability.extra.Xmult * (G.jokers and #G.jokers.cards or 0) + 1
             }
         end
     end

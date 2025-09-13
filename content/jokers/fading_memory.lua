@@ -1,8 +1,8 @@
 G.FUNCS.fading_memory_func = function(e)
     local card = e.config.ref_table
     local dynatext_main = e.children[1].children[1].config.object
-    card.fading_memory_text = dynatext_main.string == "+50" and "Chips" or "Mult"
-    e.children[1].config.colour = dynatext_main.string == "X1.5" and G.C.MULT or G.C.CLEAR
+    card.fading_memory_text = string.find(dynatext_main.string, " ") and "Chips" or "Mult"
+    e.children[1].config.colour = string.find(dynatext_main.string, "X") and G.C.MULT or G.C.CLEAR
 end
 
 CHAK_UTIL.TokenJoker{ -- rand mult, rand xmult, or rand chips token
@@ -31,17 +31,17 @@ CHAK_UTIL.TokenJoker{ -- rand mult, rand xmult, or rand chips token
     loc_vars = function(self, info_queue, card)
         local t_Xmult = {}
         for i = card.ability.extra.Xmult_min, card.ability.extra.Xmult_max do
-            t_Xmult[#t_Xmult + 1] = tostring(i)
+            t_Xmult[#t_Xmult + 1] = "X" .. tostring(i)
         end
         r_Xmult = pseudorandom_element(t_Xmult, 'chak_fading_memory_text')
         local t_mult = {}
         for i = card.ability.extra.mult_min, card.ability.extra.mult_max do
-            t_mult[#t_mult + 1] = tostring(i)
+            t_mult[#t_mult + 1] = "+" .. tostring(i)
         end
         r_mult = pseudorandom_element(t_mult, 'chak_fading_memory_text')
         local t_chips = {}
         for i = card.ability.extra.chips_min, card.ability.extra.chips_max do
-            t_chips[#t_chips + 1] = tostring(i)
+            t_chips[#t_chips + 1] = " +" .. tostring(i)
         end
         r_chips = pseudorandom_element(t_chips, 'chak_fading_memory_text')
         local loc_mult = ' ' .. (localize('k_mult')) .. ' '
@@ -116,12 +116,17 @@ CHAK_UTIL.TokenJoker{ -- rand mult, rand xmult, or rand chips token
     calculate = function(self, card, context)
         if context.joker_main then
             local ret = {
-                xmult = pseudorandom('chak_fading_memory', card.ability.extra.Xmult_min, card.ability.extra.Xmult_max),
-                mult = pseudorandom('chak_fading_memory', card.ability.extra.mult_min, card.ability.extra.mult_max),
-                chips = pseudorandom('chak_fading_memory', card.ability.extra.chips_min, card.ability.extra.chips_max)
+                "xmult",
+                "mult",
+                "chips"
             }
-            local random_ret = pseudorandom_element(ret, 'chak_fading_memory')
-            return random_ret
+            if pseudorandom_element(ret, 'chak_fading_memory') == "xmult" then
+                return {xmult = pseudorandom('chak_fading_memory', card.ability.extra.Xmult_min, card.ability.extra.Xmult_max)}
+            elseif pseudorandom_element(ret, 'chak_fading_memory') == "mult" then
+                return {mult = pseudorandom('chak_fading_memory', card.ability.extra.mult_min, card.ability.extra.mult_max)}
+            else
+                return {chips = pseudorandom('chak_fading_memory', card.ability.extra.chips_min, card.ability.extra.chips_max)}
+            end
         end
     end
 }

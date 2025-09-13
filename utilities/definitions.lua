@@ -38,7 +38,10 @@ CHAK_UTIL.JOKERS = {
     "mox_lotus",
     "encrusted_joker",
     "derk",
-    "fading_memory"
+    "fading_memory",
+    "the_house",
+    "death_and_taxes",
+    "false_shadow"
 }
 
 CHAK_UTIL.CHAKRAS = {
