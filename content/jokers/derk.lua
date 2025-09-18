@@ -32,15 +32,19 @@ SMODS.Joker{ -- Diamonds in hand either +$ or xMult
     calculate = function(self, card, context)
         if context.joker_main then
             if SMODS.pseudorandom_probability(card, 'chak_derk', 1, card.ability.extra.odds) then
-                return {
-                    Xmult_mod = card.ability.extra.Xmult_good,
-                    message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.Xmult_good } }
-                }
+                if card.ability.extra.Xmult_good ~= 1 then 
+                    return {
+                        Xmult_mod = card.ability.extra.Xmult_good,
+                        message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.Xmult_good } }
+                    }
+                end
             else
-                return {
-                    Xmult_mod = card.ability.extra.Xmult_bad,
-                    message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.Xmult_bad } }
-                }
+                if card.ability.extra.Xmult_bad ~= 1 then 
+                    return {
+                        Xmult_mod = card.ability.extra.Xmult_bad,
+                        message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.Xmult_bad } }
+                    }
+                end
             end
         end
     end

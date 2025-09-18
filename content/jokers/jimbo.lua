@@ -22,14 +22,14 @@ SMODS.Joker{ -- Spawn Joe Jokers, give mult for each Joker
     perishable_compat = true, --can it be perishable
     config = {
         extra = {
-            joker_key = 'j_chak_joe_joker',
-            Xmult = 0.5
+            Xmult_gain = 0.5,
+            joker_key = 'j_chak_joe_joker'
         },
     },
-    loc_vars = function(self, info_queue, center)
+    loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = {key = 'chak_ethereal', set = 'Other'}
         info_queue[#info_queue + 1] = G.P_CENTERS.j_chak_joe_joker
-        return { vars = { self.config.extra.Xmult, self.config.extra.Xmult * (G.jokers and #G.jokers.cards or 0) + 1 } }
+        return { vars = { card.ability.extra.Xmult_gain, card.ability.extra.Xmult_gain * (G.jokers and #G.jokers.cards or 0) + 1 } }
     end,
     calculate = function(self,card,context)
         if context.setting_blind and context.cardarea == G.jokers and not context.blueprint then
@@ -47,7 +47,7 @@ SMODS.Joker{ -- Spawn Joe Jokers, give mult for each Joker
         end
         if context.joker_main then
             return {
-                xmult = card.ability.extra.Xmult * (G.jokers and #G.jokers.cards or 0) + 1
+                xmult = card.ability.extra.Xmult_gain * (G.jokers and #G.jokers.cards or 0) + 1
             }
         end
     end

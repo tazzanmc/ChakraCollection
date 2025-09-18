@@ -1,4 +1,4 @@
-SMODS.Joker{ -- Spawn common, uncommon, rare, negative, ethereal jokers
+SMODS.Joker{ -- +3 Joker slots
     key = 'mox_lotus', --joker key
     loc_txt = { -- local text
         name = 'Mox Lotus',
@@ -18,17 +18,17 @@ SMODS.Joker{ -- Spawn common, uncommon, rare, negative, ethereal jokers
     perishable_compat = true, --can it be perishable
     config = {
         extra = {
-            card_limit = 3
+            increase = 2
         }
     },
-    loc_vars = function(self, info_queue, center)
-        return { vars = { self.config.extra.card_limit } }
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.increase } }
     end,
     add_to_deck = function(self, card, from_debuff)
-        G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.extra.card_limit
+        G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.extra.increase
     end,
     remove_from_deck = function(self, card, from_debuff)
-        G.jokers.config.card_limit = G.jokers.config.card_limit - card.ability.extra.card_limit
+        G.jokers.config.card_limit = G.jokers.config.card_limit - card.ability.extra.increase
     end,
     in_pool = function(self, args) -- Only appear if black lotus was sac'd
         return G.GAME.pool_flags.chak_black_lotus_sacd

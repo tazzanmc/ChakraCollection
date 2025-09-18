@@ -24,7 +24,7 @@ SMODS.Joker{ -- Spawn token etheric joker
             has_etheric = 0
         },
     },
-    loc_vars = function(self, info_queue, center)
+    loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.j_chak_etheric_joker
     end,
     calculate = function(self,card,context)

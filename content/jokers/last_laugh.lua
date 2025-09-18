@@ -3,9 +3,9 @@ SMODS.Joker{ -- xMult per destroyed Joker
     loc_txt = { -- local text
         name = 'Last Laugh',
         text = {
-          'Gains {X:mult,C:white}x1{} Mult per Joker',
+          'Gains {X:mult,C:white}X#1#{} Mult per Joker',
           '{C:attention}destroyed{} this run',
-          '{C:inactive}(Currently{} {X:mult,C:white}x#1#{} {C:inactive}Mult){}'
+          '{C:inactive}(Currently{} {X:mult,C:white}X#2#{} {C:inactive}Mult){}'
         }
     },
     atlas = 'Jokers', --atlas' key
@@ -20,11 +20,12 @@ SMODS.Joker{ -- xMult per destroyed Joker
     perishable_compat = true, --can it be perishable
     config = { 
         extra = {
+          Xmult_gain = 1,
           Xmult = 1 --configurable value
         }
       },
-      loc_vars = function(self,info_queue,center)
-        return {vars = {center.ability.extra.Xmult}} --#1# is replaced with card.ability.extra.Xmult
+      loc_vars = function(self,info_queue,card)
+        return {vars = {card.ability.extra.Xmult_gain, card.ability.extra.Xmult}} --#1# is replaced with card.ability.extra.Xmult
     end,
     calculate = function(self,card,context)
         if context.joker_main then

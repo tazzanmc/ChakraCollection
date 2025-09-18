@@ -18,7 +18,7 @@ CHAK_UTIL.TokenJoker{ -- +mult & +chip token
         extra = {
             mult = 2,
             chips = 25,
-            card_limit = 1
+            increase = 1
         }
     },
     loc_vars = function(self, info_queue, card)

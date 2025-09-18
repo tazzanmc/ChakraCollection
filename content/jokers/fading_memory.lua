@@ -19,7 +19,7 @@ CHAK_UTIL.TokenJoker{ -- rand mult, rand xmult, or rand chips token
     perishable_compat = true,
     config = {
         extra = {
-            card_limit = 1,
+            increase = 1,
             Xmult_min = 1.5,
             Xmult_max = 2,
             mult_min = 8,

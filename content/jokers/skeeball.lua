@@ -3,10 +3,10 @@ SMODS.Joker{ -- xMult own chips = # of scoring 10's
     loc_txt = { -- local text
         name = 'Skeeball',
         text = {
-          'Multiplies own {C:chips}Chips{} by {X:chips,C:white}X1.C{}.',
+          'Multiplies own {C:chips}Chips{} by {X:chips,C:white}X#1#.C{}.',
           '{X:chips,C:white}C{} is equal to the number',
           "of scoring {C:attention}10's{} this hand",
-          '{C:inactive}(Currently{} {C:chips}+#1#{} {C:inactive}Chips)'
+          '{C:inactive}(Currently{} {C:chips}+#2#{} {C:inactive}Chips)'
         }
     },
     atlas = 'Jokers', --atlas' key
@@ -21,11 +21,12 @@ SMODS.Joker{ -- xMult own chips = # of scoring 10's
     perishable_compat = true, --can it be perishable
     config = {
         extra = {
+            chip_gain = 1,
             chips = 10,
         }
     },
     loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.chips } }
+		return { vars = { card.ability.extra.chip_gain, card.ability.extra.chips } }
 	end,
     calculate = function(self, card, context)
         if context.before and not context.blueprint then
@@ -36,7 +37,7 @@ SMODS.Joker{ -- xMult own chips = # of scoring 10's
                 end
             end
             if ten_count > 0 then
-                card.ability.extra.chips = math.ceil(card.ability.extra.chips * (1 + (ten_count / 10)))
+                card.ability.extra.chips = math.ceil(card.ability.extra.chips * (card.ability.extra.chip_gain + (ten_count / 10)))
                 return {
                     message = 'Upgraded!',
                     colour = G.C.CHIPS,

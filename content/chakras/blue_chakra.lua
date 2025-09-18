@@ -8,7 +8,7 @@ SMODS.Consumable{ -- Eternal selected Joker
     loc_txt = {
         name = 'Ethereal', --name of card
         text = { --text of card
-            'Add {C:chak_eternal,E:2}green seal{} to',
+            '{C:chak_eternal,E:2}Awaken{}',
             '{C:attention}#1#{} selected Joker'
         }
     },
@@ -32,7 +32,7 @@ SMODS.Consumable{ -- Eternal selected Joker
     use = function(self,card,area,copier)
         for i = 1, #G.jokers.highlighted do 
             --for every card in jokers highlighted
-            G.jokers.highlighted[i]:set_seal('chak_green_seal', nil, true)
+            G.jokers.highlighted[i]:add_sticker('chak_awakened', true)
             --set to eternal
             G.jokers.highlighted[i]:juice_up(0.3, 0.3)
             play_sound('gold_seal', 1.2, 0.4)

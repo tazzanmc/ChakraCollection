@@ -3,7 +3,7 @@ SMODS.Joker{ -- +$7 if not spend/gain money
     loc_txt = { -- local text
         name = 'Counterfeit Joker',
         text = {
-          'Earn {C:gold}$7{} if you leave',
+          'Earn {C:gold}$#1#{} if you leave',
           'a shop {C:attention}without gaining{}',
           '{C:attention}or losing money{}'
         }
@@ -24,6 +24,9 @@ SMODS.Joker{ -- +$7 if not spend/gain money
             counterfeit_money = 0,
         },
     },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.money } }
+    end,
     calculate = function(self,card,context)
         if context.starting_shop and not context.blueprint then
             card.ability.extra.counterfeit_money = G.GAME.dollars

@@ -18,6 +18,18 @@ function CHAK_UTIL.table_length(t)
   return count
 end
 
+--- @param t table
+--- @param v any
+--- @return boolean
+function CHAK_UTIL.table_contains(t,v)
+  for i = 1, #t do
+    if t[i] == v then
+      return true
+    end
+  end
+  return false
+end
+
 --- Check if input is a number
 --- @param x any
 --- @return boolean
@@ -255,4 +267,81 @@ function CHAK_UTIL.add_tag(tag, event, silent)
   else
     func()
   end
+end
+
+--- Credit to Aikoyori for this function, and RenSnek for expanding it. Given a `table_in` (value table or card object) and a config table, modifies the values in `table_in` depending 
+--- on the `config` provided. `config` accepts these values:
+--- * `add`
+--- * `multiply`
+--- * `keywords`: list of specific values to change in `table_in`. If nil, change every value in `table_in`.
+--- * `unkeywords`: list of specific values to *not* change in `table_in`.
+--- * `x_protect`: if true (or not set), any X effects (Xmult, Xchips, etc.) whose value is currently 1 are not modified. If false, this check is bypassed - which may result in some unlisted values being 
+--- modified.
+--- * `reference`: initial values for the provided table. If nil, defaults to `table_in`.
+--- 
+--- This function scans all sub-tables for numeric values, so it's recommended to pass the card's ability table rather than the entire card object.
+---@param table_in table|Card
+---@param config table
+function CHAK_UTIL.mod_card_values(table_in, config)
+  if not config then config = {} end
+  local add = config.add or 0
+  local multiply = config.multiply or 1
+  local keywords = config.keywords or {}
+  local unkeyword = config.unkeywords or {}
+  local x_protect = config.x_protect or true -- If true and a key is "Xmult" and the value is 1, it won't multiply (apart from Xmult_gain)
+  local reference = config.reference or table_in
+  local function modify_values(table_in, ref)
+    for k,v in pairs(table_in) do -- For key, value in the table
+      if type(v) == "number" then -- If it's a number
+        if (keywords[k] or (CHAK_UTIL.REND.table_true_size(keywords) < 1)) and not unkeyword[k] then -- If it's in the keywords, OR there's no keywords and it isn't in the unkeywords
+          if ref and ref[k] then -- If it exists in the reference
+            if not (x_protect and (k == "Xmult" or k == "x_mult" or CHAK_UTIL.REND.starts_with(k,"h_x_")) and ref[k] == 1) then
+              table_in[k] = (ref[k] + add) * multiply -- Set it to (reference's value + add) * multiply
+            end
+          end
+        end
+      elseif type(v) == "table" then -- If it's a table
+        modify_values(v, ref[k]) -- Recurse for values in the table
+      end
+    end
+  end
+  if table_in == nil then
+    return
+  end
+  modify_values(table_in, reference)
+end
+
+-- couple util funcs nabbed from https://github.com/RenSnek/Balatro-Rendoms :33 (nested into CHAK_UTIL to avoid compatibility issues)
+CHAK_UTIL.REND = {}
+
+--- Credit to RenSnek. Given a string `str` and a shorter string `start`, checks if the string's first `#start` characters are the same as `start`.
+---@param str string
+---@param start string
+---@return boolean
+CHAK_UTIL.REND.starts_with = function(str,start)
+    return str:sub(1, #start) == start
+end
+
+--- Credit to RenSnek. Given a `table` and a `value`, returns true if `value` is found in `table`.
+---@param table table
+---@param value any
+---@return boolean
+CHAK_UTIL.REND.table_contains = function(table,value)
+    for i = 1,#table do
+        if (table[i] == value) then
+            return true
+        end
+    end
+    return false
+end
+
+--- Credit to RenSnek. Given a table, returns a more accurate estimate of its size than the `#` operator.
+---@param table table
+---@return number
+CHAK_UTIL.REND.table_true_size = function(table)
+    local n = 0
+    for k,v in pairs(table) do
+        n = n+1
+    end
+    return n
 end

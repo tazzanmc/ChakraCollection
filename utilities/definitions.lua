@@ -41,7 +41,11 @@ CHAK_UTIL.JOKERS = {
     "fading_memory",
     "the_house",
     "death_and_taxes",
-    "false_shadow"
+    "false_shadow",
+    "gup",
+    "geep",
+    "gip",
+    "789"
 }
 
 CHAK_UTIL.CHAKRAS = {
@@ -82,13 +86,19 @@ CHAK_UTIL.VOUCHERS = {
     "clairvoyance",
     "banishment",
     "obliteration",
-    "summoning_circle"
+    "summoning_circle",
+    "99_slots"
 }
 
 CHAK_UTIL.TAGS = {
     "intangible",
     "spiritual",
     "ghostly_shopper"
+}
+
+CHAK_UTIL.STICKERS = {
+    "ethereal",
+    "awakened"
 }
 
 -- Define a Booster object with certain shared properties for Chakra packs
@@ -144,19 +154,20 @@ CHAK_UTIL.ChakraBooster = SMODS.Booster:extend {
 CHAK_UTIL.TokenJoker = SMODS.Joker:extend {
     rarity = "chak_Token",
     cost = 0,
+    sell_cost = 0,
     config = {
         extra = {
-            card_limit = 1
+            increase = 1
         }
     },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = {key = 'chak_token_joker', set = 'Other'}
-		return { vars = { card.ability.extra.card_limit } }
+		return { vars = { card.ability.extra.increase } }
 	end,
     add_to_deck = function(self, card, from_debuff)
-      G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.extra.card_limit
+      G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.extra.increase
     end,
     remove_from_deck = function(self, card, from_debuff)
-      G.jokers.config.card_limit = G.jokers.config.card_limit - card.ability.extra.card_limit
+      G.jokers.config.card_limit = G.jokers.config.card_limit - card.ability.extra.increase
     end,
 }

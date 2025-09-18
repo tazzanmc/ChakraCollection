@@ -4,7 +4,7 @@ SMODS.Joker{ -- Retrigger all 7's
         name = 'Wish Orbs',
         text = {
             "Retrigger all {C:attention}7's{}",
-            '{C:attention}2{} additional times'
+            '{C:attention}#1#{} additional times'
         },
     },
     atlas = 'Jokers', --atlas' key
@@ -22,6 +22,9 @@ SMODS.Joker{ -- Retrigger all 7's
             repetitions = 2
         }
     },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.repetitions } }
+    end,
     calculate = function(self, card, context)
         if context.repetition and context.other_card:get_id() == 7 then
             return {
