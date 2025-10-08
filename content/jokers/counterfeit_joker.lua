@@ -18,6 +18,7 @@ SMODS.Joker{ -- +$7 if not spend/gain money
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
     eternal_compat = true, --can it be eternal
     perishable_compat = true, --can it be perishable
+    pixel_size = { w = 58 },
     config = {
         extra = {
             money = 7,

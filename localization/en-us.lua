@@ -42,7 +42,14 @@ return {
         dictionary = {
             chak_chakra_pack = "Chakra Pack",
             k_chak_token = "Token",
-            k_chips = "Chips"
+            k_chips = "Chips",
+            chak_ui_requires_restart = "- Requires Restart -",
+            chak_ui_no_requires_restart = "- No Restart Required -",
+            chak_ui_enable_debug = "Enable Debug",
+            chak_ui_me = "Created by",
+            chak_ui_discord = "Discord Help",
+            chak_ui_mods = "Ref'd Mods",
+            chak_ui_wikis = "Wikis Used"
         },
         labels = {
             chak_token = "Token",

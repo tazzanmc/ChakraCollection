@@ -1,3 +1,161 @@
+-- Create config UI
+SMODS.current_mod.config_tab = function()
+  return {
+    n = G.UIT.ROOT,
+    config = { align = 'cm', padding = 0.05, emboss = 0.05, r = 0.1, colour = G.C.BLACK },
+    nodes = {
+      {
+        n = G.UIT.R,
+        config = { align = 'cm', minh = 1 },
+        nodes = {
+          {
+            n = G.UIT.T,
+            config = {
+              text = localize('chak_ui_requires_restart'),
+              colour = G.C.RED,
+              scale = 0.5
+            }
+          }
+        }
+      },
+      {
+        n = G.UIT.R,
+        config = { align = 'cm' },
+        nodes = {
+          {
+            n = G.UIT.C,
+            nodes = {
+              create_toggle {
+                label = localize('chak_ui_enable_debug'),
+                ref_table = CHAK_UTIL.config,
+                ref_value = 'debug_enabled'
+              }
+            }
+          }
+        }
+      },--[[
+      {
+        n = G.UIT.R,
+        config = { align = 'cm', minh = 1 },
+        nodes = {
+          {
+            n = G.UIT.T,
+            config = {
+              text = localize('chak_ui_no_requires_restart'),
+              colour = G.C.GREEN,
+              scale = 0.5
+            }
+          }
+        }
+      }]]
+    }
+  }
+end
+
+-- Create Credits tab in our mod UI
+SMODS.current_mod.extra_tabs = function()
+  local result = {}
+
+  for k, v in pairs(CHAK_UTIL.credits) do
+    local parsed = {}
+
+    for _, entry in ipairs(v.entries) do
+      parsed[#parsed + 1] = {
+        n = G.UIT.R,
+        config = { align = 'cm', minh = 0.25 },
+        nodes = {
+          { n = G.UIT.T, config = { text = entry, colour = v.color, scale = 0.4 } }
+        }
+      }
+    end
+
+    result[k] = parsed
+  end
+
+  local credits_tab = {
+    n = G.UIT.ROOT,
+    config = { align = 'cm', padding = 0.05, emboss = 0.05, r = 0.1, colour = G.C.BLACK },
+    nodes = {
+      {
+        n = G.UIT.R,
+        config = { align = 'cm', minh = 1 },
+        nodes = {
+          {
+            n = G.UIT.C,
+            config = { padding = 0.5 },
+            nodes = {
+              {
+                n = G.UIT.R,
+                config = { align = 'cm' },
+                nodes = {
+                  { n = G.UIT.T, config = { text = localize('chak_ui_me'), colour = G.C.CHIPS, scale = 0.75 } },
+                }
+              },
+              unpack(result.me)
+            }
+          }
+        }
+      },
+      {
+        n = G.UIT.R,
+        nodes = {
+          {
+            n = G.UIT.C,
+            config = { padding = 0 },
+            nodes = {
+              {
+                n = G.UIT.R,
+                config = { align = 'cm' },
+                nodes = {
+                  { n = G.UIT.T, config = { text = localize('chak_ui_wikis'), colour = G.C.CHIPS, scale = 0.75 } },
+                }
+              },
+              unpack(result.wikis)
+            }
+          },
+          {
+            n = G.UIT.C,
+            config = { padding = 0.5 },
+            nodes = {
+              {
+                n = G.UIT.R,
+                config = { align = 'cm' },
+                nodes = {
+                  { n = G.UIT.T, config = { text = localize('chak_ui_discord'), colour = G.C.CHIPS, scale = 0.75 } },
+                }
+              },
+              unpack(result.discord)
+            }
+          },
+          {
+            n = G.UIT.C,
+            config = { padding = 0.5 },
+            nodes = {
+              {
+                n = G.UIT.R,
+                config = { align = 'cm' },
+                nodes = {
+                  { n = G.UIT.T, config = { text = localize('chak_ui_mods'), colour = G.C.CHIPS, scale = 0.75 } }
+                }
+              },
+              unpack(result.mods)
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return {
+    {
+      label = localize('b_credits'),
+      tab_definition_function = function()
+        return credits_tab
+      end
+    }
+  }
+end
+
 function CHAK_UTIL.collection_UIBox(_pool, rows, args)
   args = args or {}
   args.w_mod = args.w_mod or 1

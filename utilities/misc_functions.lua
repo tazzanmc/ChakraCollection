@@ -224,10 +224,10 @@ function CHAK_UTIL.open_booster_pack(pack_key)
   booster.T.h = G.CARD_H * 1.27
 
   booster.cost = 0
-  booster.from_tag = true
+  booster.from_tag = false
 
-  G.FUNCS.use_card { config = { ref_table = booster } }
   booster:start_materialize()
+  booster:open()
 end
 
 --- Creates and opens the specified booster pack, the same way a Tag would do it

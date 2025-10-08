@@ -15,7 +15,7 @@ SMODS.Joker{ -- Spawn common, uncommon, rare, negative, ethereal jokers
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = true, --whether or not it starts discovered
     blueprint_compat = false, --can it be blueprinted/brainstormed/other
-    eternal_compat = true, --can it be eternal
+    eternal_compat = false, --can it be eternal
     perishable_compat = true, --can it be perishable
     config = {
         extra = {
@@ -32,7 +32,7 @@ SMODS.Joker{ -- Spawn common, uncommon, rare, negative, ethereal jokers
         G.hand:change_size(-card.ability.extra.hand_size)
     end,
     calculate = function(self, card, context)
-        if context.end_of_round and not context.blueprint then
+        if context.cardarea == G.jokers and context.end_of_round and not context.blueprint then
             G.GAME.pool_flags.chak_black_lotus_sacd = true
             sendDebugMessage("mox lotus in pool: true", "CHAK")
             SMODS.destroy_cards(card)

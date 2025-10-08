@@ -11,7 +11,7 @@ SMODS.Voucher {
     },
     cost = 10,
     calculate = function(self, card, context)
-        if context.joker_type_destroyed then
+        if context.joker_type_destroyed and context.card.ability.set == 'Joker' then
             G.GAME.chak.banned_run_keys[context.card.config.center_key] = true
             sendDebugMessage("banned:" .. context.card.config.center_key, "CHAK")
         end

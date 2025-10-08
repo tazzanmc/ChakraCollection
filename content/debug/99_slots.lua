@@ -5,7 +5,8 @@ SMODS.Voucher{ -- +1 Booster Pack in Shop
     loc_txt = { -- local text
         name = '99 Slots',
         text = {
-            '99 consumable slots'
+            "{C:red}Debug content{}",
+            '999 extra slots'
         }
     },
     cost = 1,

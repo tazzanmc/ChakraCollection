@@ -26,10 +26,16 @@ SMODS.Sticker{
         if card.ability.perishable then 
             card:remove_sticker('perishable') 
         end
+        if card.ability.chak_fragile then
+            card:remove_sticker('chak_fragile')
+        end
         if G.GAME.modifiers.omicron == true and card.config.center.rarity ~= "chak_Token" and not (card.edition and card.edition.negative) then
             card:set_edition({negative = true})
             card.cost = 1
             card.sell_cost = 0
+        end
+        if G.GAME.modifiers.joly_hoker == true and not card.ability.chak_awakened then
+            card:add_sticker('chak_awakened', true)
         end
     end,
     calculate = function(self, card, context)
@@ -37,6 +43,9 @@ SMODS.Sticker{
             card:set_edition({negative = true})
             card.cost = 1
             card.sell_cost = 0
+        end
+        if G.GAME.modifiers.joly_hoker == true and not card.ability.chak_awakened then
+            card:add_sticker('chak_awakened', true)
         end
         if context.starting_shop and not context.repetition and not context.individual then
             for i=#G.jokers.cards, 1, -1 do

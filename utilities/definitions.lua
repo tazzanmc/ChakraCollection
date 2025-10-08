@@ -5,6 +5,9 @@ SMODS.current_mod.optional_features = {
   quantum_enhancements = true,
 }
 
+-- Load mod config
+CHAK_UTIL.config = SMODS.current_mod.config
+
 -- Disable specific items by commenting them out
 CHAK_UTIL.JOKERS = {
     "dragon_balls",
@@ -42,10 +45,19 @@ CHAK_UTIL.JOKERS = {
     "the_house",
     "death_and_taxes",
     "false_shadow",
+    "seeing_double",
     "gup",
     "geep",
     "gip",
-    "789"
+    "789",
+    "steal_this_joker",
+    "unofficial",
+    "vaudeville_joker",
+    "JOKE",
+    "joly_hoker",
+    "trinity",
+    "a_clown_with_a_gun",
+    "killer_joke"
 }
 
 CHAK_UTIL.CHAKRAS = {
@@ -55,11 +67,7 @@ CHAK_UTIL.CHAKRAS = {
     "heart_chakra",
     "throat_chakra",
     "third_eye_chakra",
-    "crown_chakra",
-    "red_chakra",
-    "blue_chakra",
-    "gold_chakra",
-    "purple_chakra"
+    "crown_chakra"
 }
 
 CHAK_UTIL.JOKER_SEALS = {
@@ -86,8 +94,9 @@ CHAK_UTIL.VOUCHERS = {
     "clairvoyance",
     "banishment",
     "obliteration",
-    "summoning_circle",
-    "99_slots"
+    "restock",
+    "restock_plus",
+    "summoning_circle"
 }
 
 CHAK_UTIL.TAGS = {
@@ -98,7 +107,55 @@ CHAK_UTIL.TAGS = {
 
 CHAK_UTIL.STICKERS = {
     "ethereal",
+    "fragile",
     "awakened"
+}
+
+CHAK_UTIL.DECKS = {
+    "draft"
+}
+
+CHAK_UTIL.DEBUG = {
+    "99_slots",
+    "blue_chakra",
+    "gold_chakra",
+    "purple_chakra",
+    "red_chakra"
+}
+
+CHAK_UTIL.credits = {
+  me = {
+    color = G.C.CHAK_STICKER_AWAKENED,
+    entries = {
+      'tazzan'
+    }
+  },
+  discord = {
+    color = G.C.GREEN,
+    entries = {
+      "N' (@nh6574)",
+      'bepisfever',
+      'somethingcom515', 
+      'eremel_', 
+      'Eris (@borb43)'
+    }
+  },
+  mods = {
+    color = G.C.FILTER,
+    entries = {
+      'Paperback',
+      'Extra Credit',
+      'Joker Display',
+      'Rofflatro'
+    }
+  },
+  wikis = {
+    color = G.C.PURPLE,
+    entries = {
+      'VanillaRemade',
+      'SMODS Wiki'
+    }
+  }
 }
 
 -- Define a Booster object with certain shared properties for Chakra packs

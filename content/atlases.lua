@@ -12,7 +12,7 @@ SMODS.Atlas{ -- Chakras
     py = 95 
 }
 
-SMODS.Atlas{ -- Chakras 
+SMODS.Atlas{ -- Misc Consumables 
     key = 'MiscConsumables', 
     path = 'misc_consumables.png', 
     px = 71, 
@@ -36,6 +36,13 @@ SMODS.Atlas{ -- Stickers
 SMODS.Atlas{ -- Vouchers 
     key = 'Vouchers', 
     path = 'vouchers.png', 
+    px = 71, 
+    py = 95 
+}
+
+SMODS.Atlas{ -- Decks 
+    key = 'Decks', 
+    path = 'decks.png', 
     px = 71, 
     py = 95 
 }

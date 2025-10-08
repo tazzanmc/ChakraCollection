@@ -34,6 +34,14 @@ CHAK_UTIL.register_items(CHAK_UTIL.TAGS, "content/tags")
 -- Load Stickers
 CHAK_UTIL.register_items(CHAK_UTIL.STICKERS, "content/stickers")
 
+-- Load Decks
+CHAK_UTIL.register_items(CHAK_UTIL.DECKS, "content/decks")
+
+-- Load Debug if it's enabled
+if CHAK_UTIL.config.debug_enabled then
+    CHAK_UTIL.register_items(CHAK_UTIL.DEBUG, "content/debug")
+end
+
 -- CONSUMABLES --
 SMODS.ConsumableType{ -- Chakra Cards
     key = 'ChakraConsumableType',
@@ -142,9 +150,9 @@ CHAK_UTIL.ChakraBooster{ -- Single Chakra Pack
 
 SMODS.Booster {
     key = "buffoon_ethereal",
-    weight = 0.4,
+    weight = 0.3,
     kind = 'Buffoon', -- You can also use Buffoon if you want it to belong to the vanilla kind
-    cost = 3,
+    cost = 1,
     atlas = 'Boosters', --atlas
     pos = { x = 0, y = 1 },
     loc_txt = { -- local text
@@ -302,6 +310,23 @@ SMODS.DrawStep {
 }
 
 SMODS.DrawStep {
+    key = 'chak_decks',
+    order = 10,
+    func = function(self)
+        if G.GAME.selected_back.effect.center.key == 'b_chak_draft' then
+            if self.area == G.deck or self.area == nil then
+                local send_to_shader = { math.min(self.children.back.VT.r*3, 1) + G.TIMERS.REAL/(28) + (self.juice and self.juice.r*20 or 0), self.ARGS.send_to_shader[2]}
+                self.children.back:draw_shader('booster', nil, send_to_shader, true, nil, nil, nil, nil, nil, nil, false)
+            else
+                local send_to_shader = { math.min(self.children.back.VT.r*3, 1) + G.TIMERS.REAL/(28) + (self.juice and self.juice.r*20 or 0) + self.tilt_var.amt, self.ARGS.send_to_shader[2]}
+                self.children.back:draw_shader('booster', nil, send_to_shader)
+            end
+        end
+    end,
+    conditions = { vortex = false, facing = 'back' },
+}
+
+SMODS.DrawStep {
     key = 'chak_jokers',
     order = 10,
     func = function(self)
@@ -311,6 +336,10 @@ SMODS.DrawStep {
         if (self.config.center.key == 'j_chak_etheric_joker' and (self.config.center.discovered or self.bypass_discovery_center)) and self:should_draw_base_shader() then
             self.children.center:draw_shader('negative_shine', nil, self.ARGS.send_to_shader)
         end
+        --[[
+        if (self.config.center.key == 'j_chak_seeing_double' and (self.config.center.discovered or self.bypass_discovery_center)) and self:should_draw_base_shader() then
+            self.children.center:draw_shader('chak_seeing_double', nil, self.ARGS.send_to_shader)
+        end]]
     end,
     conditions = { vortex = false, facing = 'front' },
 }

@@ -17,6 +17,7 @@ SMODS.Joker{ -- xMult if skip both small+big blind
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
     eternal_compat = true, --can it be eternal
     perishable_compat = true, --can it be perishable
+    pixel_size = { w = 64, h = 64 },
     config = {
         extra = {
             Xmult = 1,

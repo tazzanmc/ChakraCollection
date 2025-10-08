@@ -90,6 +90,7 @@ SMODS.Sticker{
                 multiply = 2,
                 x_protect = true,
                 unkeywords = {
+                    odds = true,
                     size = true,
                     h_size = true,
                     increase = true,
@@ -99,7 +100,14 @@ SMODS.Sticker{
                     counterfeit_money = true,
                     every = true,
                     remaining = true,
-                    faces = true
+                    faces = true,
+                    per_chips = true
+                }
+            })
+            CHAK_UTIL.mod_card_values(card.ability,{
+                multiply = 0.5,
+                keywords = {
+                    odds = true
                 }
             })
         end
