@@ -38,5 +38,8 @@ SMODS.Consumable{ -- Eternal selected Joker
             G.jokers.highlighted[i]:juice_up(0.3, 0.3)
             play_sound('gold_seal', 1.2, 0.4)
         end
-    end,  
+    end,
+    in_pool = function(self, args) -- Don't appear
+        return false
+    end  
 }

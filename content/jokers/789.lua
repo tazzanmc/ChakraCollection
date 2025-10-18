@@ -64,7 +64,7 @@ SMODS.Joker { -- Scored 7's X2 mult if played w/ 9, destroy random scored 9
         end
         if context.destroy_card and context.cardarea == G.play and card.ability.extra.destroyed == 0 -- Mark random 9 to be destroyed
         and (card.ability.extra.ranks['7'] > 0 and card.ability.extra.ranks['9'] > 0) 
-        and context.destroy_card == pseudorandom_element(card.ability.extra.targets, pseudoseed('chak_789')) then
+        and context.destroy_card == pseudorandom_element(card.ability.extra.targets, pseudoseed('chak_789'..card.sort_id)) then
             card.ability.extra.destroyed = 1
             return {
                 remove = true,

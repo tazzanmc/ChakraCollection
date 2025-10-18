@@ -24,7 +24,7 @@ SMODS.Joker{ -- three of a kind+ = awaken random
         end
     end,
     calculate = function(self, card, context)
-        if context.before and next(context.poker_hands['Three of a Kind']) then
+        if context.before and next(context.poker_hands['Three of a Kind']) and not context.blueprint then
             local non_awakened_jokers = {}
             for i = 1, #G.jokers.cards do -- Non-awakened jokers into a table
                 if not G.jokers.cards[i].ability.chak_awakened then
@@ -32,7 +32,7 @@ SMODS.Joker{ -- three of a kind+ = awaken random
                 end
             end
             if #non_awakened_jokers ~= 0 then
-                local chosen_joker = pseudorandom_element(non_awakened_jokers, 'realize_choice') -- Pick rand non-awakened
+                local chosen_joker = pseudorandom_element(non_awakened_jokers, 'chak_trinity'..card.sort_id) -- Pick rand non-awakened
                 CHAK_UTIL.use_consumable_animation(card, chosen_joker, function()
                         chosen_joker:add_sticker('chak_awakened', true)
                         play_sound('gold_seal', 1.2, 0.4)

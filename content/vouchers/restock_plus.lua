@@ -6,12 +6,19 @@ SMODS.Voucher {
         name = "Restock Plus",
         text = {
             '{C:attention}Rerolling{} the shop also',
-            "rerolls {C:attention}Vouchers"
+            "rerolls {C:attention}Vouchers",
+            "once per shop"
         }
     },
     cost = 10,
+    config = {
+        extra = {
+            rolled = 0
+        },
+    },
     calculate = function(self, card, context)
-        if context.reroll_shop then
+        if context.reroll_shop and card.ability.extra.rolled == 0 then
+            card.ability.extra.rolled = 1
             G.E_MANAGER:add_event(Event({
                 func = function()
                     G.shop.alignment.offset.y = -5.3
@@ -40,6 +47,9 @@ SMODS.Voucher {
                     return true
                 end
             }))
+        end
+        if context.ending_shop and card.ability.extra.rolled ~= 0 then
+            card.ability.extra.rolled = 0
         end
     end
 }

@@ -19,5 +19,8 @@ SMODS.Voucher{ -- +1 Booster Pack in Shop
     redeem = function(self, card)
         G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.increase
         G.jokers.config.card_limit = G.jokers.config.card_limit + card.ability.increase
+    end,
+    in_pool = function(self, args) -- Don't appear
+        return false
     end
 }

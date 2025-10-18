@@ -101,7 +101,7 @@ SMODS.current_mod.extra_tabs = function()
         nodes = {
           {
             n = G.UIT.C,
-            config = { padding = 0 },
+            config = { padding = 0.5 },
             nodes = {
               {
                 n = G.UIT.R,
