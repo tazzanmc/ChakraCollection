@@ -3,6 +3,7 @@
 A [Balatro](https://store.steampowered.com/app/2379780/Balatro/) mod by [tazzan](https://tazzan.carrd.co/) which revolves around a new consumable type: **Chakra Cards**!
 
 # Requires [Steamodded](https://github.com/Steamodded/smods)!
+***IF YOU PLAY A BETA BUILD SET "PIXEL ART SMOOTHING" TO OFF PRIOR TO ENABLING THE MOD, OTHERWISE YOU'LL CRASH!!***
 
 # Additions:
 - A new consumable card type: **Chakra Cards**! All about modifying your Jokers in new, unique ways.
