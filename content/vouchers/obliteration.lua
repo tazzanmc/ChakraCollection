@@ -1,7 +1,7 @@
 SMODS.Voucher {
     key = 'obliteration',
     atlas = 'Vouchers',
-    pos = {x = 1, y = 1},
+    pos = {x = 2, y = 1},
     loc_txt = { -- local text
         name = "Obliteration",
         text = {

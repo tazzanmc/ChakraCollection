@@ -31,7 +31,7 @@ SMODS.Joker{ -- Spawn token etheric joker
         if context.setting_blind and context.cardarea == G.jokers then
             card.ability.extra.has_etheric = 0
             for i = 1, #G.jokers.cards do
-                if G.jokers.cards[i].config.center.key == card.ability.extra.joker_key and (G.jokers.cards[i].edition and G.jokers.cards[i].edition.negative) then
+                if G.jokers.cards[i].config.center.key == card.ability.extra.joker_key then
                     card.ability.extra.has_etheric = 1
                 end
             end

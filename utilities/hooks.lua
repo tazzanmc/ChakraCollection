@@ -27,6 +27,17 @@ function SMODS.shatters(card)
   return ret
 end
 
+-- Don't shuffle cards if you have certain Joker
+local shuffle_ref = CardArea.shuffle
+function CardArea:shuffle(_seed)
+  local ret = shuffle_ref(self, _seed)
+  if self == G.deck and G.GAME.modifiers.omicron == true then
+    table.sort(self.cards, function (a, b) return a:get_nominal('suit') < b:get_nominal('suit') end )
+    self:set_ranks()
+  end
+  return ret
+end
+
 --[[ Track destroyed cards
 local destroy_cards_ref = SMODS.destroy_cards
 function SMODS.destroy_cards(cards, bypass_eternal, immediate)

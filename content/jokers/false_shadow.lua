@@ -4,7 +4,7 @@ SMODS.Joker{ -- +$ equal to destroyed joker's rarity
         name = 'False Shadow',
         text = {
           'Upon exiting the shop, create',
-          'a {C:dark_edition}Negative{}, {C:chak_sticker_ethereal}Ethereal{} copy',
+          'a {C:dark_edition}Negative{}, {C:chak_sticker_ethereal,E:2}Ethereal{} copy',
           "of the last destroyed {C:attention}Joker",
           "{C:inactive}(Currently: {C:attention}#1#{C:inactive})"
         }

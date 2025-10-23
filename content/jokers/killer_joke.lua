@@ -1,11 +1,12 @@
-SMODS.Joker{ -- Seal adjacent Jokers when sold
+SMODS.Joker{ -- Sell to destroy right Joker, earn 2X sell val, bypass eternal
     key = 'killer_joke', --joker key
     loc_txt = { -- local text
         name = 'Killer Joke',
         text = {
           "Sell this Joker to {C:attention}destroy",
           "the Joker to the right and",
-          "earn {C:money}X#1#{} its sell value"
+          "earn {C:money}#1#X{} its sell value",
+          "{C:inactive}(Bypasses {C:chak_eternal,E:2}Eternal{C:inactive})"
         }
     },
     atlas = 'Jokers', --atlas' key

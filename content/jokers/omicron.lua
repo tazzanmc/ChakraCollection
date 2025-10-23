@@ -27,6 +27,14 @@ SMODS.Joker{ -- Dupe used Spectrals from packs
         G.GAME.modifiers.omicron = true
     end,
     remove_from_deck = function(self, card, from_debuff)
-        G.GAME.modifiers.omicron = false
+        local has_omicron = 0
+        for i = 1, #G.jokers.cards do
+            if G.jokers.cards[i].config.center.key == "chak_omicron" then
+                local has_omicron = has_omicron + 1
+            end
+        end
+        if local has_omicron <= 1 then
+            G.GAME.modifiers.omicron = false
+        end
     end
 }

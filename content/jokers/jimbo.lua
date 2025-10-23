@@ -4,7 +4,7 @@ SMODS.Joker{ -- Spawn Joe Jokers, give mult for each Joker
         name = 'Jimbo',
         text = {
           'When entering a blind, create',
-          'an {C:chak_sticker_ethereal}Ethereal {C:chak_token}Token {C:attention}Joe Joker{} ',
+          'an {C:chak_sticker_ethereal,E:2}Ethereal {C:chak_token}Token {C:attention}Joe Joker{} ',
           "for each Joker card. Gives {C:white,X:mult}X#1#{}",
           "Mult for each Joker card",
           "{C:inactive}(Currently {C:white,X:mult}X#2# {C:inactive} Mult)"

@@ -43,17 +43,17 @@ if CHAK_UTIL.config.debug_enabled then
 end
 
 -- CONSUMABLES --
-SMODS.ConsumableType{ -- Chakra Cards
+SMODS.ConsumableType {                    -- Chakra Cards
     key = 'ChakraConsumableType',
-    collection_rows = {3,4}, --amount of cards in one page
-    primary_colour = G.C.CHAK_EDITION, --first color
-    secondary_colour = G.C.CHAK_EDITION, --second color
+    collection_rows = { 3, 4 },           --amount of cards in one page
+    primary_colour = G.C.CHAK_EDITION,    --first color
+    secondary_colour = G.C.CHAK_EDITION,  --second color
     loc_txt = {
-        collection = 'Chakra Cards', --name displayed in collection
-        name = 'Chakra', --name displayed in badge
+        collection = 'Chakra Cards',      --name displayed in collection
+        name = 'Chakra',                  --name displayed in badge
         undiscovered = {
-            name = 'Hidden Chakra', --undiscovered name
-            text = {'Chakra undisovered'} --undiscovered text
+            name = 'Hidden Chakra',       --undiscovered name
+            text = { 'Chakra undisovered' } --undiscovered text
         }
     },
     shop_rate = 0, --rate in shop out of 100
@@ -61,23 +61,23 @@ SMODS.ConsumableType{ -- Chakra Cards
     draw
 }
 
-SMODS.UndiscoveredSprite{
+SMODS.UndiscoveredSprite {
     key = 'ChakraConsumableType', --must be the same key as the consumabletype
     atlas = 'Chakras',
-    pos = {x = 0, y = 3}
+    pos = { x = 0, y = 3 }
 }
 
 -- BOOSTERS --
-CHAK_UTIL.ChakraBooster{ -- Chakra Pack
+CHAK_UTIL.ChakraBooster {       -- Chakra Pack
     key = 'chakra_pack_normal', --key
-    atlas = 'Boosters', --atlas
-    pos = {x = 0, y = 0}, --position in atlas
-    loc_txt = { -- local text
-      name = 'Chakra Pack',
-      text = {
-        'Choose {C:attention}#1#{} of up to',
-        '{C:attention}#2#{} {C:chak_edition}Chakra{} cards to',
-        'be used immediately'
+    atlas = 'Boosters',         --atlas
+    pos = { x = 0, y = 0 },     --position in atlas
+    loc_txt = {                 -- local text
+        name = 'Chakra Pack',
+        text = {
+            'Choose {C:attention}#1#{} of up to',
+            '{C:attention}#2#{} {C:chak_edition}Chakra{} cards to',
+            'be used immediately'
         }
     },
     cost = 4,
@@ -88,16 +88,16 @@ CHAK_UTIL.ChakraBooster{ -- Chakra Pack
     }
 }
 
-CHAK_UTIL.ChakraBooster{ -- Jumbo Chakra Pack
+CHAK_UTIL.ChakraBooster {      -- Jumbo Chakra Pack
     key = 'chakra_pack_jumbo', --key
-    atlas = 'Boosters', --atlas
-    pos = {x = 1, y = 0}, --position in atlas
-    loc_txt = { -- local text
-      name = 'Jumbo Chakra Pack',
-      text = {
-        'Choose {C:attention}#1#{} of up to',
-        '{C:attention}#2#{} {C:chak_edition}Chakra{} cards to',
-        'be used immediately'
+    atlas = 'Boosters',        --atlas
+    pos = { x = 1, y = 0 },    --position in atlas
+    loc_txt = {                -- local text
+        name = 'Jumbo Chakra Pack',
+        text = {
+            'Choose {C:attention}#1#{} of up to',
+            '{C:attention}#2#{} {C:chak_edition}Chakra{} cards to',
+            'be used immediately'
         }
     },
     cost = 6,
@@ -108,16 +108,16 @@ CHAK_UTIL.ChakraBooster{ -- Jumbo Chakra Pack
     }
 }
 
-CHAK_UTIL.ChakraBooster{ -- Mega Chakra Pack
+CHAK_UTIL.ChakraBooster {     -- Mega Chakra Pack
     key = 'chakra_pack_mega', --key
-    atlas = 'Boosters', --atlas
-    pos = {x = 2, y = 0}, --position in atlas
-    loc_txt = { -- local text
-      name = 'Mega Chakra Pack',
-      text = {
-        'Choose {C:attention}#1#{} of up to',
-        '{C:attention}#2#{} {C:chak_edition}Chakra{} cards to',
-        'be used immediately'
+    atlas = 'Boosters',       --atlas
+    pos = { x = 2, y = 0 },   --position in atlas
+    loc_txt = {               -- local text
+        name = 'Mega Chakra Pack',
+        text = {
+            'Choose {C:attention}#1#{} of up to',
+            '{C:attention}#2#{} {C:chak_edition}Chakra{} cards to',
+            'be used immediately'
         }
     },
     cost = 8,
@@ -128,13 +128,13 @@ CHAK_UTIL.ChakraBooster{ -- Mega Chakra Pack
     }
 }
 
-CHAK_UTIL.ChakraBooster{ -- Single Chakra Pack
+CHAK_UTIL.ChakraBooster {       -- Single Chakra Pack
     key = 'chakra_pack_single', --key
-    atlas = 'Boosters', --atlas
-    pos = {x = 3, y = 0}, --position in atlas
-    loc_txt = { -- local text
-      name = 'Single Chakra Pack',
-      text = {
+    atlas = 'Boosters',         --atlas
+    pos = { x = 3, y = 0 },     --position in atlas
+    loc_txt = {                 -- local text
+        name = 'Single Chakra Pack',
+        text = {
             'Choose {C:attention}#1#{}',
             '{C:chak_edition}Chakra{} card to',
             'be used immediately'
@@ -151,17 +151,17 @@ CHAK_UTIL.ChakraBooster{ -- Single Chakra Pack
 SMODS.Booster {
     key = "buffoon_ethereal",
     weight = 0.3,
-    kind = 'Buffoon', -- You can also use Buffoon if you want it to belong to the vanilla kind
+    kind = 'Buffoon',   -- You can also use Buffoon if you want it to belong to the vanilla kind
     cost = 1,
     atlas = 'Boosters', --atlas
     pos = { x = 0, y = 1 },
-    loc_txt = { -- local text
+    loc_txt = {         -- local text
         name = 'Ethereal Buffoon Pack',
         text = {
-                'Choose {C:attention}#1#{} of up to',
-                '{C:attention}#2#{} {C:chak_sticker_ethereal}Ethereal{} Joker cards'
-            }
-        },
+            'Choose {C:attention}#1#{} of up to',
+            '{C:attention}#2#{} {C:chak_sticker_ethereal,E:2}Ethereal{} Joker cards'
+        }
+    },
     config = { extra = 6, choose = 1 },
     group_key = "k_buffoon_pack",
     loc_vars = function(self, info_queue, card)
@@ -184,19 +184,19 @@ SMODS.Booster {
 }
 
 -- SHADERS --
-SMODS.Shader{
+SMODS.Shader {
     key = 'ignited',
     path = 'ignited.fs'
 }
 
 -- EDITIONS --
-SMODS.Edition{ -- Retrigger itself, chance to destroy
+SMODS.Edition { -- Retrigger itself, chance to destroy
     key = 'ignited',
     shader = 'ignited',
     loc_txt = {
         name = 'Ignited', --name of card
         label = 'Ignited',
-        text = { --text of card
+        text = {          --text of card
             '{C:attention}Retriggers{} itself, {C:green}#1# in #2#',
             'chance this card is {C:red}destroyed',
             '{C:inactive,s:0.8}Jokers are destroyed at end of round'
@@ -209,36 +209,38 @@ SMODS.Edition{ -- Retrigger itself, chance to destroy
         sound = "explosion_release1", per = 1.2, vol = 0.4
     },
     get_weight = function(self)
-		return G.GAME.edition_rate * self.weight
-	end,
+        return G.GAME.edition_rate * self.weight
+    end,
     config = {
         odds = 3,
         destroyed = 1
     },
     loc_vars = function(self, info_queue, card)
         local numerator, denominator = SMODS.get_probability_vars(card, 1, card.edition.odds, 'chak_ignited')
-        return {vars = {numerator, denominator}}
+        return { vars = { numerator, denominator } }
     end,
     calculate = function(self, card, context)
         if context.other_card == card
-			and (
-				(context.repetition and context.cardarea == G.play)
-				or (context.retrigger_joker_check and not context.retrigger_joker)
-			)
-		then
-			return {
-				message = 'Again!',
-				repetitions = 1,
-				card = card,
-			}
-		end
+            and (
+                (context.repetition and context.cardarea == G.play)
+                or (context.retrigger_joker_check and not context.retrigger_joker)
+            )
+        then
+            return {
+                message = 'Again!',
+                repetitions = 1,
+                card = card,
+            }
+        end
         if context.destroying_card and context.destroy_card == card then
             if SMODS.pseudorandom_probability(card, 'chak_ignited', 1, card.edition.odds) then
                 return {
                     card = card,
                     message = 'Extinguished!',
                     SMODS.destroy_cards(card),
-                    sound = 'crumple1', volume = 0.7, pitch = 1.2,
+                    sound = 'crumple1',
+                    volume = 0.7,
+                    pitch = 1.2,
                     remove = true
                 }
             end
@@ -248,7 +250,9 @@ SMODS.Edition{ -- Retrigger itself, chance to destroy
                     card = card,
                     message = 'Extinguished!',
                     SMODS.destroy_cards(card),
-                    sound = 'crumple1', volume = 0.7, pitch = 1.2,
+                    sound = 'crumple1',
+                    volume = 0.7,
+                    pitch = 1.2,
                     remove = true
                 }
             end
@@ -262,9 +266,9 @@ local set_cost_ref = Card.set_cost
 function Card.set_cost(self)
     local ret = set_cost_ref(self)
     if self.added_to_deck then
-    -- If this card is Ethereal set sell cost to 0
+        -- If this card is Ethereal set sell cost to 0
         if self.ability.chak_ethereal then
-        self.sell_cost = 0
+            self.sell_cost = 0
         end
     end
     return ret
@@ -277,9 +281,9 @@ SMODS.Stake {
     prefix_config = { applied_stakes = { mod = false } },
     applied_stakes = { "gold" },
     sticker_atlas = "Stickers",
-    sticker_pos = {x = 0, y = 0},
+    sticker_pos = { x = 0, y = 0 },
     atlas = "Chips",
-    pos = {x = 0, y = 0},
+    pos = { x = 0, y = 0 },
     modifiers = function()
         G.GAME.modifiers.enable_ethereal_in_shop = true
     end,
@@ -315,10 +319,12 @@ SMODS.DrawStep {
     func = function(self)
         if G.GAME.selected_back.effect.center.key == 'b_chak_draft' then
             if self.area == G.deck or self.area == nil then
-                local send_to_shader = { math.min(self.children.back.VT.r*3, 1) + G.TIMERS.REAL/(28) + (self.juice and self.juice.r*20 or 0), self.ARGS.send_to_shader[2]}
+                local send_to_shader = { math.min(self.children.back.VT.r * 3, 1) + G.TIMERS.REAL / (28) +
+                (self.juice and self.juice.r * 20 or 0), self.ARGS.send_to_shader[2] }
                 self.children.back:draw_shader('booster', nil, send_to_shader, true, nil, nil, nil, nil, nil, nil, false)
             else
-                local send_to_shader = { math.min(self.children.back.VT.r*3, 1) + G.TIMERS.REAL/(28) + (self.juice and self.juice.r*20 or 0) + self.tilt_var.amt, self.ARGS.send_to_shader[2]}
+                local send_to_shader = { math.min(self.children.back.VT.r * 3, 1) + G.TIMERS.REAL / (28) +
+                (self.juice and self.juice.r * 20 or 0) + self.tilt_var.amt, self.ARGS.send_to_shader[2] }
                 self.children.back:draw_shader('booster', nil, send_to_shader)
             end
         end

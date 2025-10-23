@@ -42,7 +42,7 @@ SMODS.Joker{ -- xMult per played blind
                     message = "The house always wins!"
                 }
             else
-                card.ability.extra.dollars = math.ceil(hand_chips * card.ability.extra.percent)
+                card.ability.extra.dollars = math.ceil((hand_chips or 0) * card.ability.extra.percent)
             end
         end
     end,

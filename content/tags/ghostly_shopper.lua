@@ -7,7 +7,7 @@ SMODS.Tag {
         text = {
                 'The next shop will have',
                 'an additional {C:attention}free',
-                '{C:chak_sticker_ethereal}Ethereal Buffoon Pack{}'
+                '{C:chak_sticker_ethereal,E:2}Ethereal Buffoon Pack{}'
         }
     },
     in_pool = function(self, args)

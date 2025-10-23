@@ -6,7 +6,7 @@ SMODS.Tag {
         name = 'Intangible Tag',
         text = {
                 'Gives a free',
-                '{C:chak_sticker_ethereal}Ethereal Buffoon Pack{}'
+                '{C:chak_sticker_ethereal,E:2}Ethereal Buffoon Pack{}'
             }
         },
     loc_vars = function(self, info_queue, tag)

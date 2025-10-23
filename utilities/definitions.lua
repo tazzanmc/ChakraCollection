@@ -57,7 +57,11 @@ CHAK_UTIL.JOKERS = {
     "joly_hoker",
     "trinity",
     "a_clown_with_a_gun",
-    "killer_joke"
+    "killer_joke",
+    "token_machine",
+    "e10+",
+    "doodle_joker",
+    "fancy_clown"
 }
 
 CHAK_UTIL.CHAKRAS = {

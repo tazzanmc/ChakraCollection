@@ -5,7 +5,7 @@ SMODS.Joker{ -- three of a kind+ = awaken random
         text = {
             "When a hand containing {C:attention}Three",
             "{C:attention}of a Kind{} is scored,",
-            "{C:chak_sticker_awakened}Awaken{} a random Joker"
+            "{C:chak_sticker_awakened,E:1}Awaken{} a random Joker"
         }
     },
     atlas = 'Jokers', --atlas' key

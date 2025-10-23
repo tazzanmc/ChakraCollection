@@ -3,7 +3,7 @@ SMODS.Joker{ -- Awaken Ethereal Jokers
     loc_txt = { -- local text
         name = 'Joly Hoker',
         text = {
-          '{C:chak_sticker_awakened}Awaken {C:chak_sticker_ethereal}Ethereal{} Jokers'
+          '{C:chak_sticker_awakened,E:1}Awaken {C:chak_sticker_ethereal,E:2}Ethereal{} Jokers'
         }
     },
     atlas = 'Jokers', --atlas' key
