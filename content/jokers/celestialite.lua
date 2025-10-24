@@ -18,4 +18,20 @@ SMODS.Joker{ -- Dupe skip tags
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
     eternal_compat = true, --can it be eternal
     perishable_compat = true, --can it be perishable
+    calculate = function(self,card,context)
+      if context.setting_blind then
+        return {
+          func = function()
+            G.E_MANAGER:add_event(Event({
+              trigger = 'before',
+              delay = 0.0,
+              func = (function()
+                CHAK_UTIL.add_tag(G.GAME.round_resets.blind_tags[G.GAME.blind:get_type()])
+                return true
+              end)
+            }))
+          end
+        }
+      end
+    end
 }

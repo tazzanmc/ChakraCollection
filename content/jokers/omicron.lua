@@ -33,7 +33,7 @@ SMODS.Joker{ -- Dupe used Spectrals from packs
                 local has_omicron = has_omicron + 1
             end
         end
-        if local has_omicron <= 1 then
+        if has_omicron <= 1 then
             G.GAME.modifiers.omicron = false
         end
     end
