@@ -61,7 +61,27 @@ CHAK_UTIL.JOKERS = {
     "token_machine",
     "e10+",
     "doodle_joker",
-    "fancy_clown"
+    "fancy_clown",
+    "trick",
+    "leftover_card",
+    "wilson",
+    "willow",
+    "wolfgang",
+    "wendy",
+    "wx-78",
+    "wickerbottom",
+    "woodie",
+    "wes",
+    "maxwell",
+    "wigfrid",
+    "webber",
+    "warly",
+    "winona",
+    "wortox",
+    "wormwood",
+    "wurt",
+    "walter",
+    "wanda"
 }
 
 CHAK_UTIL.CHAKRAS = {
@@ -126,6 +146,10 @@ CHAK_UTIL.DEBUG = {
     "purple_chakra",
     "red_chakra"
 }
+
+-- Define light and dark suits
+CHAK_UTIL.light_suits = { 'Diamonds', 'Hearts' }
+CHAK_UTIL.dark_suits = { 'Spades', 'Clubs' }
 
 CHAK_UTIL.credits = {
   me = {

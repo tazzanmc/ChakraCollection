@@ -25,5 +25,8 @@ SMODS.Joker{ -- xMult per played blind
 		return { vars = { card.ability.extra.Xmult_gain, card.ability.extra.per_chips } }
 	end,
     calculate = function(self, card, context)
+    end,
+    in_pool = function(self, args) -- Don't appear
+        return false
     end
 }

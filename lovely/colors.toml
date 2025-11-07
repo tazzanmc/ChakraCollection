@@ -17,6 +17,8 @@ CHAK_PERISHABLE = HEX('4f5da1'),
 CHAK_RENTAL = HEX('b18f43'),
 CHAK_TOKEN = HEX('B5B4B1'),
 CHAK_STICKER_FRAGILE = HEX('cf968c'),
+CHAK_LIGHT_SUIT = HEX('F06841'),
+CHAK_DARK_SUIT = HEX('3C4A4E'),
 --  CHAK END
 '''
 
@@ -37,6 +39,8 @@ chak_sticker_ethereal = G.C.CHAK_STICKER_ETHEREAL,
 chak_sticker_awakened = G.C.CHAK_STICKER_AWAKENED,
 chak_sticker_fragile = G.C.CHAK_STICKER_FRAGILE,
 chak_token = G.C.CHAK_TOKEN,
+chak_light_suit = G.C.CHAK_LIGHT_SUIT,
+chak_dark_suit = G.C.CHAK_DARK_SUIT,
 --  CHAK END
 '''
 

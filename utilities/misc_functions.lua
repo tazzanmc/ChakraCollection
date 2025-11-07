@@ -228,6 +228,7 @@ function CHAK_UTIL.open_booster_pack(pack_key)
 
   booster:start_materialize()
   booster:open()
+  return true
 end
 
 --- Creates and opens the specified booster pack, the same way a Tag would do it
@@ -244,6 +245,7 @@ function CHAK_UTIL.open_booster_pack_from_tag(pack_key)
 
   G.FUNCS.use_card { config = { ref_table = booster } }
   booster:start_materialize()
+  return true
 end
 
 --- Adds a tag the same way vanilla does it
@@ -344,4 +346,15 @@ CHAK_UTIL.REND.table_true_size = function(table)
         n = n+1
     end
     return n
+end
+
+---Credit to Paperback. Used to check whether a card is a light or dark suit
+---@param card table
+---@param type 'light' | 'dark'
+---@return boolean
+function CHAK_UTIL.is_suit(card, type)
+  for _, v in ipairs(type == 'light' and CHAK_UTIL.light_suits or CHAK_UTIL.dark_suits) do
+    if card:is_suit(v) then return true end
+  end
+  return false
 end

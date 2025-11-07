@@ -11,6 +11,7 @@ SMODS.Voucher {
         }
     },
     cost = 10,
+    requires = {"v_chak_restock"},
     config = {
         extra = {
             rolled = 0

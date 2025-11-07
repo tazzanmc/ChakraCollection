@@ -19,8 +19,10 @@ SMODS.Joker{ -- Dupe skip tags
     eternal_compat = true, --can it be eternal
     perishable_compat = true, --can it be perishable
     calculate = function(self,card,context)
-      if context.setting_blind then
+      if context.setting_blind and G.GAME.blind:get_type() ~= "Boss" then
         return {
+          message = 'Copied!',
+          colour = G.C.CHAK_ETHEREAL,
           func = function()
             G.E_MANAGER:add_event(Event({
               trigger = 'before',

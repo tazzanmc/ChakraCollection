@@ -11,8 +11,8 @@ SMODS.Joker{ -- xMult per played blind
     },
     atlas = 'Jokers', --atlas' key
     pos = {x = 8, y = 1},
-    rarity = 2, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
-    cost = 7, --cost
+    rarity = 1, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    cost = 4, --cost
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other

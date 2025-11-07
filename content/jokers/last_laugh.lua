@@ -37,4 +37,7 @@ SMODS.Joker{ -- xMult per destroyed Joker
             }
         end
     end,
+    in_pool = function(self, args) -- Don't appear while this joker's broken
+        return false
+    end
 }

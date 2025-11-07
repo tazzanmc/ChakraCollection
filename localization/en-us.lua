@@ -22,6 +22,18 @@ return {
             },
         },
         Other = {
+            chak_light_suits = {
+                name = "Light Suits",
+                text = {
+                    "{C:diamonds}Diamonds{}, {C:hearts}Hearts{}"
+                }
+            },
+            chak_dark_suits = {
+                name = "Dark Suits",
+                text = {
+                    "{C:spades}Spades{}, {C:clubs}Clubs{}"
+                }
+            },
             chak_ethereal_stake_sticker = {
                 name = "Ethereal Sticker",
                 text = {

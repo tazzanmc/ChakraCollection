@@ -317,3 +317,66 @@ function CHAK_UTIL.create_select_card_ui(card, area)
     }
   }
 end
+
+--- Recreation of Paperback light suit & dark suit code
+-- Returns a table that can be inserted into info_queue to show all suits of the provided type
+--- @param type 'light' | 'dark'
+--- @return table
+function CHAK_UTIL.suit_tooltip(type)
+  local suits = type == 'light' and CHAK_UTIL.light_suits or CHAK_UTIL.dark_suits
+
+  local key = 'chak_' .. type .. '_suits'
+  local colours = {}
+
+  -- If any modded suits were loaded, we need to dynamically
+  -- add them to the localization table
+  if #suits > 2 then
+    local text = {}
+    local line = ""
+    local text_parsed = {}
+
+    for i = 1, #suits do
+      local suit = suits[i]
+
+      -- Remove Bunco exotic suits if they are not revealed yet
+      if next(SMODS.find_mod("Bunco")) and not (G.GAME and G.GAME.Exotic) then
+        if suit == "bunc_Fleurons" or suit == "bunc_Halberds" then
+          suit = nil
+        end
+      end
+
+      if suit ~= nil then
+        colours[#colours + 1] = G.C.SUITS[suit] or G.C.IMPORTANT
+        line = line .. "{V:" .. i .. "}" .. localize(suit, 'suits_plural') .. "{}"
+
+        if i < #suits then
+          line = line .. ", "
+        end
+
+        if #line > 30 then
+          text[#text + 1] = line
+          line = ""
+        end
+      end
+    end
+
+    if #line > 0 then
+      text[#text + 1] = line
+    end
+
+    for _, v in ipairs(text) do
+      text_parsed[#text_parsed + 1] = loc_parse_string(v)
+    end
+
+    G.localization.descriptions.Other[key].text = text
+    G.localization.descriptions.Other[key].text_parsed = text_parsed
+  end
+
+  return {
+    set = 'Other',
+    key = key,
+    vars = {
+      colours = colours
+    }
+  }
+end

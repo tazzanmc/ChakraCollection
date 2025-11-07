@@ -9,6 +9,7 @@ SMODS.load_file("utilities/definitions.lua")()
 SMODS.load_file("utilities/hooks.lua")()
 SMODS.load_file("utilities/misc_functions.lua")()
 SMODS.load_file("utilities/ui.lua")()
+SMODS.load_file("utilities/cross_mod.lua")()
 
 -- Load Atlases
 SMODS.load_file("content/atlases.lua")()

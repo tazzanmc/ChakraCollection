@@ -31,7 +31,7 @@ end
 local shuffle_ref = CardArea.shuffle
 function CardArea:shuffle(_seed)
   local ret = shuffle_ref(self, _seed)
-  if self == G.deck and G.GAME.modifiers.omicron == true then
+  if self == G.deck and G.GAME.modifiers.chak_legendary == true then
     table.sort(self.cards, function (a, b) return a:get_nominal('suit') < b:get_nominal('suit') end )
     self:set_ranks()
   end
