@@ -9,33 +9,33 @@ SMODS.Consumable{ -- Eternal selected Joker
         name = 'Ethereal', --name of card
         text = { --text of card
             "{C:red}Debug content{}",
-            'Add {C:chak_eternal,E:2}orange seal{} to',
-            '{C:attention}#1#{} selected Joker'
+            'Add {C:chak_eternal,E:2}black seal{} to',
+            '{C:attention}#1#{} selected card'
         }
     },
     config = {
         extra = {
-            jokersselected = 1, --configurable value
+            max_highlighted = 1 --configurable value
         }
     },
     loc_vars = function(self,info_queue, center)
         info_queue[#info_queue+1] = {key = 'eternal', set = 'Other'}
-        return {vars = {center.ability.extra.jokersselected}} --displays configurable value: the #1# in the description is replaced with the configurable value
+        return {vars = {center.ability.extra.max_highlighted }} --displays configurable value: the #1# in the description is replaced with the configurable value
     end,
     can_use = function(self,card)
-            if G and G.jokers then
-                if #G.jokers.highlighted ~= 0 and #G.jokers.highlighted <= card.ability.extra.jokersselected then --if cards in jokers highlighted are above 0 but below the configurable value then
+            if G and G.hand then
+                if #G.hand.highlighted ~= 0 and #G.hand.highlighted <= card.ability.extra.max_highlighted then --if cards in jokers highlighted are above 0 but below the configurable value then
                     return true
                 end
             end
         return false
     end,
     use = function(self,card,area,copier)
-        for i = 1, #G.jokers.highlighted do 
+        for i = 1, #G.hand.highlighted do 
             --for every card in jokers highlighted
-            G.jokers.highlighted[i]:set_seal('chak_orange_seal', nil, true)
+            G.hand.highlighted[i]:set_seal('chak_black_seal', nil, true)
             --set to eternal
-            G.jokers.highlighted[i]:juice_up(0.3, 0.3)
+            G.hand.highlighted[i]:juice_up(0.3, 0.3)
             play_sound('gold_seal', 1.2, 0.4)
         end
     end,

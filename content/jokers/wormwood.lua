@@ -18,7 +18,7 @@ SMODS.Joker { -- Gain chips for Clubs in hand. Reset after beating boss
     pos = {x = 5, y = 7},
     config = {
         extra = {
-            chip_gain = 25,
+            chip_gain = 15,
             chips = 0,
             ranks = {}
         }

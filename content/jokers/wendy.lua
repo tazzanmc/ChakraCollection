@@ -19,7 +19,7 @@ SMODS.Joker { -- Gain chips & mult for each discard card which is drawn as the s
     pos = {x = 3, y = 6},
     config = {
         extra = {
-            chip_gain = 5,
+            chip_gain = 6,
             mult_gain = 2,
             chips = 0,
             mult = 0,
@@ -54,9 +54,10 @@ SMODS.Joker { -- Gain chips & mult for each discard card which is drawn as the s
                         end
                     end
                     if SMODS.has_any_suit(playing_card) then
+                        local wild = "wild"
                         if not og_suits[wild] then
                             og_suits[wild] = 1
-                            all_suits[logged_suit] = 1
+                            all_suits[wild] = 1
                         else
                             og_suits[wild] = og_suits[wild] + 1
                         end
@@ -82,11 +83,12 @@ SMODS.Joker { -- Gain chips & mult for each discard card which is drawn as the s
                         end
                     end
                     if SMODS.has_any_suit(playing_card) then
-                        if not new_suits[wild] then
+                        local wild = "wild"
+                        if not og_suits[wild] then
                             new_suits[wild] = 1
-                            all_suits[logged_suit] = 1
+                            all_suits[wild] = 1
                         else
-                            new_suits[wild] = new_suits[wild] + 1
+                            og_suits[wild] = og_suits[wild] + 1
                         end
                     end
                 end

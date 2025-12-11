@@ -19,7 +19,7 @@ SMODS.Joker { -- Gain mult if played hand has a Heart, Diamond, Spade & Club. Re
     pos = {x = 2, y = 7},
     config = {
         extra = {
-            mult_gain = 4,
+            mult_gain = 16,
             mult = 0
         }
     },
@@ -67,7 +67,7 @@ SMODS.Joker { -- Gain mult if played hand has a Heart, Diamond, Spade & Club. Re
                 card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
                 return {
                     colour = G.C.RED,
-                    message = "Upgraded!"
+                    message = "+" .. card.ability.extra.mult_gain
                 }
             end
         end

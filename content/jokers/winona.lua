@@ -4,7 +4,7 @@ SMODS.Joker { -- gain 1 mult for each heart kept. Resets after beating boss
         name = "Winona",
         text = {
             "Gains {C:mult}+#1#{} Mult for each",
-            "{C:hearts}Heart{} {C:attention}NOT{} discarded",
+            "{C:hearts}Heart{} {C:attention}kept{} when discarding",
             "{C:inactive}(Currently {C:mult}+#2# {C:inactive}Mult)",
             "{C:inactive,s:0.8}({C:attention,s:0.8}Resets {C:inactive,s:0.8}after defeating a Boss Blind)"
         }
@@ -48,12 +48,10 @@ SMODS.Joker { -- gain 1 mult for each heart kept. Resets after beating boss
                 end
             end
             if hand_hearts - discard_hearts ~= 0 then
-                for i = 1, (hand_hearts - discard_hearts) do
-                    card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
-                end
+                card.ability.extra.mult = card.ability.extra.mult + (card.ability.extra.mult_gain * (hand_hearts - discard_hearts))
                 return {
                     colour = G.C.MULT,
-                    message = "Upgraded!"
+                    message = "+" .. (card.ability.extra.mult_gain * (hand_hearts - discard_hearts))
                 }
             end
         end

@@ -21,58 +21,27 @@ SMODS.Joker{ -- Store & dupe destroyed playing cards
     eternal_compat = true, --can it be eternal
     perishable_compat = true, --can it be perishable
     pixel_size = { w = 70, h = 65 },
-    config = {
-        extra = {
-            copying = {
-                base = {
-                    id = "None",
-                    suit = "None",
-                    value = "None"
-                },
-                seal = nil,
-                edition = nil,
-                enhancement = nil
-            }
-        },
-    },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = {key = 'chak_fragile', set = 'Other'}
-        local copying = card.ability.extra.copying
-        return { vars = { copying.base.value, copying.base.suit, colours = { G.C.SUITS[copying.base.suit] } } }
+        return { vars = { G.GAME.last_destroyed_card_value or 'None', G.GAME.last_destroyed_card_suit or 'None', colours = { G.C.SUITS[G.GAME.last_destroyed_card_suit or 'spades'] } } }
     end,
     calculate = function(self,card,context)
-        local copying = card.ability.extra.copying
         if context.remove_playing_cards and not context.blueprint then
-            for _, removed_card in ipairs(context.removed) do
-                copying.base.id = removed_card.base.id
-                copying.base.suit = removed_card.base.suit
-                copying.base.value = removed_card.base.value
-                if removed_card.seal ~= nil then
-                    copying.seal = removed_card.seal
-                else
-                    copying.seal = nil
-                end
-                if removed_card.edition ~= nil then
-                    copying.edition = removed_card.edition.key
-                else
-                    copying.edition = nil
-                end
-                if removed_card.config.center ~= nil then
-                    copying.enhancement = removed_card.config.center.key
-                else
-                    copying.enhancement = nil
-                end
-            end
+            local removed = context.removed[#context.removed]
+            return {
+                message = removed.base.name,
+                colour = G.C.FILTER
+            }
         end
-        if context.first_hand_drawn and copying.base.id ~= "None" and copying.base.suit ~= "None" then
+        if context.first_hand_drawn and G.GAME.last_destroyed_card_id ~= nil and G.GAME.last_destroyed_card_suit ~= nil then
             local created_card = SMODS.add_card{
                 set = "Playing Card",
                 no_edition = true,
-                edition = copying.edition,
-                enhancement = copying.enhancement,
-                seal = copying.seal,
-                rank = copying.base.value,
-                suit = copying.base.suit
+                edition = G.GAME.last_destroyed_card_edition,
+                enhancement = G.GAME.last_destroyed_card_enhancement,
+                seal = G.GAME.last_destroyed_card_seal,
+                rank = G.GAME.last_destroyed_card_value,
+                suit = G.GAME.last_destroyed_card_suit
             }
             created_card:add_sticker('chak_fragile', true)
             created_card.states.visible = nil -- Animate

@@ -6,7 +6,7 @@ SMODS.Sticker{
         name = 'Awakened', --name of card
         label = 'Awakened',
         text = { --text of card
-            '{C:attention}Doubled{}',
+            '{C:chak_sticker_awakened,E:1}Improved{}',
             'effectiveness'
         }
     },
@@ -107,7 +107,8 @@ SMODS.Sticker{
             CHAK_UTIL.mod_card_values(card.ability,{
                 multiply = 0.5,
                 keywords = {
-                    odds = true
+                    odds = true,
+                    cost = true
                 }
             })
         end

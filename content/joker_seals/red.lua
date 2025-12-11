@@ -6,7 +6,7 @@ local return_whitelist = {
 }
 
 SMODS.Seal{
-    key = 'red_seal',
+    key = 'red_joker_seal',
     sets = { Joker = true },
     atlas = 'JokerSeals',
     pos = { x = 1, y = 0 },

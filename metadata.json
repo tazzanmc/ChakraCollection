@@ -6,7 +6,7 @@
   "author": ["tazzan"],
   "description": "A mod that adds a new consumable card type themed around Chakras, with supporting Jokers, Vouchers, and mechanics.",
   "main_file": "main.lua",
-  "badge_colour": "8B61AD",
+  "badge_colour": "06BD64",
   "version": "0.05~beta",
   "dependencies": ["Steamodded (>=1.0.0~BETA-0711a)", "Lovely (>=0.7.1)"],
   "priority": 7

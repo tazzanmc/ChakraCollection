@@ -38,14 +38,63 @@ function CardArea:shuffle(_seed)
   return ret
 end
 
---[[ Track destroyed cards
-local destroy_cards_ref = SMODS.destroy_cards
-function SMODS.destroy_cards(cards, bypass_eternal, immediate)
-  if #cards.playing_card then
+-- Collector's Edition making editions score in hand
+-- thank you Somethingcom515!
+local oldcalcedition = Card.calculate_edition
+function Card:calculate_edition(context)
+    local g
+    if self.edition and (self.edition.foil or self.edition.holo or self.edition.polychrome) and context.cardarea == G.hand then
+        if next(SMODS.find_card("j_chak_collectors_edition")) then
+            context.cardarea = G.play
+            g = oldcalcedition(self, context)
+            context.cardarea = G.hand
+        else
+            g = oldcalcedition(self, context)
+        end
+    elseif self.edition and not next(SMODS.find_card("j_chak_collectors_edition")) then
+        g = oldcalcedition(self, context)
+    end
+    return g
+end
+
+-- Recalc debuff when you stop dragging a card
+local stop_drag_ref = Card.stop_drag
+function Card:stop_drag()
+  stop_drag_ref(self)
+  if self.area and self.area == G.jokers then
+    for k, v in pairs(G.jokers.cards) do SMODS.recalc_debuff(v) end
   end
-  local ret = destroy_cards_ref(cards, bypass_eternal, immediate)
-  return ret
-end]]
+end
+
+-- Track and count destroyed cards
+local remove_ref = Card.remove
+function Card:remove()
+  remove_ref(self)
+  if self.getting_sliced and self.ability.set == 'Joker' then
+    G.GAME.jokers_destroyed = (G.GAME.jokers_destroyed or 0) + 1 -- Last Laugh
+    G.GAME.last_destroyed_joker = self.config.center.key -- False Shadow
+  end
+  if self.base.id ~= nil and self.base.suit ~= nil and self.base.value ~= nil then -- Steal This Joker
+    G.GAME.last_destroyed_card_id = self.base.id
+    G.GAME.last_destroyed_card_suit = self.base.suit
+    G.GAME.last_destroyed_card_value = self.base.value
+    if self.seal ~= nil then
+      G.GAME.last_destroyed_card_seal = self.base.seal
+    else
+      G.GAME.last_destroyed_card_seal = nil
+    end
+    if self.edition ~= nil then
+      G.GAME.last_destroyed_card_edition = self.base.edition
+    else
+      G.GAME.last_destroyed_card_edition = nil
+    end
+    if self.config.center ~= nil then
+      G.GAME.last_destroyed_card_enhancement = self.config.center.key
+    else
+      G.GAME.last_destroyed_card_enhancement = nil
+    end
+  end
+end
 
 --- Thank you @bepisfever for these
 -- Adds apply method to seals

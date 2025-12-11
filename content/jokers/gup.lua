@@ -21,7 +21,7 @@ SMODS.Joker{ -- Spawn Joe Jokers, give mult for each Joker
     config = {
         extra = {
             joker_key = 'j_chak_geep',
-            Xmult_gain = 0.75
+            Xmult_gain = 0.3
         },
     },
     loc_vars = function(self, info_queue, card)

@@ -18,7 +18,7 @@ SMODS.Joker { -- Gain chips for each diff discarded suit. Reset after beating bo
     pos = {x = 7, y = 7},
     config = {
         extra = {
-            chip_gain = 5,
+            chip_gain = 16,
             chips = 0
         }
     },
@@ -53,7 +53,7 @@ SMODS.Joker { -- Gain chips for each diff discarded suit. Reset after beating bo
                 card.ability.extra.chips = card.ability.extra.chips + (card.ability.extra.chip_gain * triggers)
                 return {
                     colour = G.C.CHIPS,
-                    message = "Upgraded!"
+                    message = "+" .. (card.ability.extra.chip_gain * triggers)
                 }
             end
         end

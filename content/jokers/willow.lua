@@ -18,7 +18,7 @@ SMODS.Joker { -- Gain chips for discarded faces. Reset after beating boss
     pos = {x = 1, y = 6},
     config = {
         extra = {
-            chip_gain = 20,
+            chip_gain = 15,
             chips = 0,
             ranks = {}
         }
@@ -31,7 +31,7 @@ SMODS.Joker { -- Gain chips for discarded faces. Reset after beating boss
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
             return {
                 colour = G.C.BLUE,
-                message = "Upgraded!"
+                message = "+" .. card.ability.extra.chip_gain
             }
         end
         if context.joker_main then

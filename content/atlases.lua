@@ -54,6 +54,13 @@ SMODS.Atlas{ -- Joker Seals
     py = 95
 }
 
+SMODS.Atlas{ -- Seals 
+    key = 'Seals',
+    path = 'seals.png',
+    px = 71,
+    py = 95
+}
+
 SMODS.Atlas { -- Stake chips
     key = 'Chips',
     path = 'chips.png',
@@ -66,6 +73,37 @@ SMODS.Atlas { -- Tags
     path = 'tags.png',
     px = 34,
     py = 34
+}
+
+--- Suits
+-- Low Contrast
+SMODS.Atlas {
+    key = 'suits_lc',
+    path = 'suits_lc.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Atlas {
+    key = 'suits_ui_lc',
+    path = 'suits_ui_lc.png',
+    px = 18,
+    py = 18
+}
+
+-- High Contrast
+SMODS.Atlas {
+    key = 'suits_hc',
+    path = 'suits_hc.png',
+    px = 71,
+    py = 95
+}
+
+SMODS.Atlas {
+    key = 'suits_ui_hc',
+    path = 'suits_ui_hc.png',
+    px = 18,
+    py = 18
 }
 
 SMODS.Atlas { -- modicon

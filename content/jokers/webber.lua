@@ -18,7 +18,7 @@ SMODS.Joker { -- Gain mult for each discarded light suit drawn for dark suit. Re
     pos = {x = 1, y = 7},
     config = {
         extra = {
-            mult_gain = 2,
+            mult_gain = 3,
             mult = 0,
             og_suits = {
                 light = 0,
@@ -88,7 +88,7 @@ SMODS.Joker { -- Gain mult for each discarded light suit drawn for dark suit. Re
                 card.ability.extra.mult = card.ability.extra.mult + (card.ability.extra.mult_gain * triggers)
                 return {
                     colour = G.C.MULT,
-                    message = "Upgraded!"
+                    message = "+" .. (card.ability.extra.mult_gain * triggers)
                 }
             end
         end

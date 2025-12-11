@@ -81,7 +81,13 @@ CHAK_UTIL.JOKERS = {
     "wormwood",
     "wurt",
     "walter",
-    "wanda"
+    "wanda",
+    "certainty",
+    "vending_machine",
+    "collectors_edition",
+    "roudy_joker",
+    "noisy_joker",
+    "judgement"
 }
 
 CHAK_UTIL.CHAKRAS = {
@@ -92,6 +98,10 @@ CHAK_UTIL.CHAKRAS = {
     "throat_chakra",
     "third_eye_chakra",
     "crown_chakra"
+}
+
+CHAK_UTIL.SEALS = {
+    "black"
 }
 
 CHAK_UTIL.JOKER_SEALS = {
@@ -108,7 +118,17 @@ CHAK_UTIL.JOKER_SEALS = {
 
 CHAK_UTIL.SPECTRALS = {
     "realize",
+    "sanctify",
+    "recursion",
     "whole"
+}
+
+CHAK_UTIL.TAROTS = {
+    "judgement" -- modified vanilla (for hail 2 u)
+}
+
+CHAK_UTIL.ENHANCEMENTS = {
+    "lucky" -- modified vanilla (for certainty)
 }
 
 CHAK_UTIL.VOUCHERS = {
@@ -137,6 +157,20 @@ CHAK_UTIL.STICKERS = {
 
 CHAK_UTIL.DECKS = {
     "draft"
+}
+
+CHAK_UTIL.BOOSTERS = {
+    "spectral_packs", -- modified vanilla (for increased choices)
+    "chakra_pack_normal",
+    "chakra_pack_jumbo",
+    "chakra_pack_mega",
+    "chakra_pack_single",
+    "buffoon_ethereal"
+}
+
+CHAK_UTIL.SUITS = {
+    "acorns",
+    "bells"
 }
 
 CHAK_UTIL.DEBUG = {

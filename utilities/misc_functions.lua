@@ -358,3 +358,47 @@ function CHAK_UTIL.is_suit(card, type)
   end
   return false
 end
+
+---Credit to Paperback. Checks if the provided suit is currently in the deck
+---@param suit string
+---@param ignore_wild? boolean
+---@return boolean
+function CHAK_UTIL.has_suit_in_deck(suit, ignore_wild)
+  for _, v in ipairs(G.playing_cards or {}) do
+    if not SMODS.has_no_suit(v) and (v.base.suit == suit or (not ignore_wild and v:is_suit(suit))) then
+      return true
+    end
+  end
+  return false
+end
+
+---Credit to Paperback. Checks if a spectrum hand has been played
+--- @return boolean
+function CHAK_UTIL.spectrum_played()
+  local spectrum_played = false
+  if G and G.GAME and G.GAME.hands then
+    for k, v in pairs(G.GAME.hands) do
+      if string.find(k, "Spectrum", nil, true) then
+        if G.GAME.hands[k].played > 0 then
+          spectrum_played = true
+          break
+        end
+      end
+    end
+  end
+
+  return spectrum_played
+end
+
+---Credit to Multiplayer Balatro!
+---Func to draw a card from play to your deck
+CHAK_UTIL.draw_from_play_to_deck = function()
+  local play_count = #G.play.cards
+  local it = 1
+  for k, v in ipairs(G.play.cards) do
+    if (not v.shattered) and (not v.destroyed) then 
+      draw_card(G.play, G.deck, it*100/play_count, 'down', false, v)
+      it = it + 1
+    end
+  end
+end

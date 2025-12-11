@@ -18,7 +18,7 @@ CHAK_UTIL.TokenJoker{ -- Spawn Joe Jokers, give mult for each Joker
             increase = 1,
             joker_key = 'j_chak_gip',
             token_jokers = 0,
-            Xmult_gain = 0.4
+            Xmult_gain = 0.2
         },
     },
     loc_vars = function(self, info_queue, card)

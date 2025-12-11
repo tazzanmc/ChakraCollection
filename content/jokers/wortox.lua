@@ -34,7 +34,7 @@ SMODS.Joker { -- gain 1 mult for each heart kept. Resets after beating boss
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
             return {
                 colour = G.C.CHIPS,
-                message = "Upgraded!"
+                message = "+" .. card.ability.extra.chip_gain
             }
         end
         if context.individual and context.cardarea == G.hand and context.other_card:is_suit("Hearts") and not context.blueprint and not context.end_of_round then

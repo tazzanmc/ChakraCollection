@@ -23,6 +23,18 @@ CHAK_UTIL.register_items(CHAK_UTIL.CHAKRAS, "content/chakras")
 -- Load Spectrals
 CHAK_UTIL.register_items(CHAK_UTIL.SPECTRALS, "content/spectrals")
 
+-- Load Tarots
+CHAK_UTIL.register_items(CHAK_UTIL.TAROTS, "content/tarots")
+
+-- Load Boosters
+CHAK_UTIL.register_items(CHAK_UTIL.BOOSTERS, "content/boosters")
+
+-- Load Enhancements
+CHAK_UTIL.register_items(CHAK_UTIL.ENHANCEMENTS, "content/enhancements")
+
+-- Load Seals
+CHAK_UTIL.register_items(CHAK_UTIL.SEALS, "content/seals")
+
 -- Load Joker Seals
 CHAK_UTIL.register_items(CHAK_UTIL.JOKER_SEALS, "content/joker_seals")
 
@@ -41,6 +53,16 @@ CHAK_UTIL.register_items(CHAK_UTIL.DECKS, "content/decks")
 -- Load Debug if it's enabled
 if CHAK_UTIL.config.debug_enabled then
     CHAK_UTIL.register_items(CHAK_UTIL.DEBUG, "content/debug")
+end
+
+-- Load Bells & Acorns if enabled
+CHAK_UTIL.register_items(CHAK_UTIL.SUITS, "content/suits")
+
+if CHAK_UTIL.config.include_bells then
+    table.insert(CHAK_UTIL.light_suits, 'chak_Bells')
+end
+if CHAK_UTIL.config.include_acorns then
+    table.insert(CHAK_UTIL.dark_suits, 'chak_Acorns')
 end
 
 -- CONSUMABLES --
@@ -66,122 +88,6 @@ SMODS.UndiscoveredSprite {
     key = 'ChakraConsumableType', --must be the same key as the consumabletype
     atlas = 'Chakras',
     pos = { x = 0, y = 3 }
-}
-
--- BOOSTERS --
-CHAK_UTIL.ChakraBooster {       -- Chakra Pack
-    key = 'chakra_pack_normal', --key
-    atlas = 'Boosters',         --atlas
-    pos = { x = 0, y = 0 },     --position in atlas
-    loc_txt = {                 -- local text
-        name = 'Chakra Pack',
-        text = {
-            'Choose {C:attention}#1#{} of up to',
-            '{C:attention}#2#{} {C:chak_edition}Chakra{} cards to',
-            'be used immediately'
-        }
-    },
-    cost = 4,
-    weight = 1,
-    config = {
-        extra = 2,
-        choose = 1
-    }
-}
-
-CHAK_UTIL.ChakraBooster {      -- Jumbo Chakra Pack
-    key = 'chakra_pack_jumbo', --key
-    atlas = 'Boosters',        --atlas
-    pos = { x = 1, y = 0 },    --position in atlas
-    loc_txt = {                -- local text
-        name = 'Jumbo Chakra Pack',
-        text = {
-            'Choose {C:attention}#1#{} of up to',
-            '{C:attention}#2#{} {C:chak_edition}Chakra{} cards to',
-            'be used immediately'
-        }
-    },
-    cost = 6,
-    weight = 1,
-    config = {
-        extra = 4,
-        choose = 1
-    }
-}
-
-CHAK_UTIL.ChakraBooster {     -- Mega Chakra Pack
-    key = 'chakra_pack_mega', --key
-    atlas = 'Boosters',       --atlas
-    pos = { x = 2, y = 0 },   --position in atlas
-    loc_txt = {               -- local text
-        name = 'Mega Chakra Pack',
-        text = {
-            'Choose {C:attention}#1#{} of up to',
-            '{C:attention}#2#{} {C:chak_edition}Chakra{} cards to',
-            'be used immediately'
-        }
-    },
-    cost = 8,
-    weight = 0.25,
-    config = {
-        extra = 4,
-        choose = 2
-    }
-}
-
-CHAK_UTIL.ChakraBooster {       -- Single Chakra Pack
-    key = 'chakra_pack_single', --key
-    atlas = 'Boosters',         --atlas
-    pos = { x = 3, y = 0 },     --position in atlas
-    loc_txt = {                 -- local text
-        name = 'Single Chakra Pack',
-        text = {
-            'Choose {C:attention}#1#{}',
-            '{C:chak_edition}Chakra{} card to',
-            'be used immediately'
-        }
-    },
-    cost = 2,
-    weight = 0,
-    config = {
-        extra = 1,
-        choose = 1
-    }
-}
-
-SMODS.Booster {
-    key = "buffoon_ethereal",
-    weight = 0.3,
-    kind = 'Buffoon',   -- You can also use Buffoon if you want it to belong to the vanilla kind
-    cost = 1,
-    atlas = 'Boosters', --atlas
-    pos = { x = 0, y = 1 },
-    loc_txt = {         -- local text
-        name = 'Ethereal Buffoon Pack',
-        text = {
-            'Choose {C:attention}#1#{} of up to',
-            '{C:attention}#2#{} {C:chak_sticker_ethereal,E:2}Ethereal{} Joker cards'
-        }
-    },
-    config = { extra = 6, choose = 1 },
-    group_key = "k_buffoon_pack",
-    loc_vars = function(self, info_queue, card)
-        local cfg = (card and card.ability) or self.config
-        return {
-            vars = { cfg.choose, cfg.extra },
-            --key = self.key:sub(1, -3), -- This uses the description key of the booster without the number at the end
-        }
-    end,
-    ease_background_colour = function(self)
-        ease_background_colour_blind(G.STATES.SPECTRAL_PACK)
-    end,
-    create_card = function(self, card, i)
-        ret = SMODS.create_card {
-            set = "Joker", area = G.pack_cards, skip_materialize = true, soulable = true, key_append = "buf"
-        }
-        ret:add_sticker('chak_ethereal', true)
-        return ret
-    end,
 }
 
 -- SHADERS --
@@ -213,7 +119,7 @@ SMODS.Edition { -- Retrigger itself, chance to destroy
         return G.GAME.edition_rate * self.weight
     end,
     config = {
-        odds = 3,
+        odds = 2,
         destroyed = 1
     },
     loc_vars = function(self, info_queue, card)
@@ -313,7 +219,7 @@ SMODS.DrawStep {
     end,
     conditions = { vortex = false, facing = 'front' },
 }
-
+--[[ Booster shader for draft deck (currently bugged)
 SMODS.DrawStep {
     key = 'chak_decks',
     order = 10,
@@ -332,7 +238,7 @@ SMODS.DrawStep {
     end,
     conditions = { vortex = false, facing = 'back' },
 }
-
+]]
 SMODS.DrawStep {
     key = 'chak_jokers',
     order = 10,

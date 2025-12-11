@@ -29,7 +29,17 @@ SMODS.current_mod.config_tab = function()
                 label = localize('chak_ui_enable_debug'),
                 ref_table = CHAK_UTIL.config,
                 ref_value = 'debug_enabled'
-              }
+              },
+              create_toggle {
+                label = localize('chak_ui_enable_acorns'),
+                ref_table = CHAK_UTIL.config,
+                ref_value = 'include_acorns'
+              },
+              create_toggle {
+                label = localize('chak_ui_enable_bells'),
+                ref_table = CHAK_UTIL.config,
+                ref_value = 'include_bells'
+              },
             }
           }
         }

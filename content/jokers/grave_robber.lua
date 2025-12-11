@@ -5,8 +5,8 @@ SMODS.Joker{ -- +$ equal to destroyed joker's rarity
         text = {
           'Earn {C:gold}$X{} when a {C:attention}Joker',
           'is destroyed. {C:gold}X{} is equal',
-          "to the Joker's {C:attention}rarity",
-          "{C:inactive,s:0.8}({C:blue,s:0.8}Common {C:inactive,s:0.8}= 1, {C:green,s:0.8}Uncommon {C:inactive,s:0.8}= 2, etc.)"
+          "to #1#x Joker's {C:attention}rarity",
+          "{C:inactive,s:0.8}({C:blue,s:0.8}Common {C:inactive,s:0.8}= #2#, {C:green,s:0.8}Uncommon {C:inactive,s:0.8}= #3#, etc.)"
         }
     },
     atlas = 'Jokers', --atlas' key
@@ -21,9 +21,12 @@ SMODS.Joker{ -- +$ equal to destroyed joker's rarity
     perishable_compat = true, --can it be perishable
     config = {
         extra = {
-            money = 1,
+            money = 2,
         },
     },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.money, card.ability.extra.money * 1, card.ability.extra.money * 2 } }
+    end,
     calculate = function(self,card,context)
         if context.joker_type_destroyed and context.cardarea == G.jokers then
             if CHAK_UTIL.is_number(context.card.config.center.rarity) then

@@ -18,7 +18,7 @@ SMODS.Joker { -- Gain mult for hearts in 2nd discard. Reset after beating boss
     pos = {x = 4, y = 6},
     config = {
         extra = {
-            mult_gain = 2,
+            mult_gain = 7,
             mult = 0,
             ranks = {}
         }
@@ -35,7 +35,7 @@ SMODS.Joker { -- Gain mult for hearts in 2nd discard. Reset after beating boss
             card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
             return {
                 colour = G.C.RED,
-                message = "Upgraded!"
+                message = "+" .. card.ability.extra.mult_gain
             }
         end
         if context.joker_main then

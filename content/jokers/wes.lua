@@ -32,7 +32,7 @@ SMODS.Joker { -- Gain chips if you discard hand > high card. Reset after beating
                 card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
                 return {
                     colour = G.C.BLUE,
-                    message = "Upgraded!"
+                    message = "+" .. card.ability.extra.chip_gain
                 }
             end
         end

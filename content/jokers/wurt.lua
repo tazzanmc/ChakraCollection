@@ -18,7 +18,7 @@ SMODS.Joker { -- Gain chips when face card scored. Reset after beating boss
     pos = {x = 6, y = 7},
     config = {
         extra = {
-            chip_gain = 10,
+            chip_gain = 15,
             chips = 0
         }
     },

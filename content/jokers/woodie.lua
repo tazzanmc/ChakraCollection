@@ -13,12 +13,12 @@ SMODS.Joker { -- Gain chips for each discarded card. Reset after beating boss
     discovered = true,
     blueprint_compat = true,
     rarity = 1,
-    cost = 4,
+    cost = 5,
     atlas = 'Jokers', --atlas' key
     pos = {x = 6, y = 6},
     config = {
         extra = {
-            chip_gain = 7,
+            chip_gain = 4,
             chips = 0,
             ranks = {}
         }
@@ -31,7 +31,7 @@ SMODS.Joker { -- Gain chips for each discarded card. Reset after beating boss
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
             return {
                 colour = G.C.BLUE,
-                message = "Upgraded!"
+                message = "+".. card.ability.extra.chip_gain
             }
         end
         if context.joker_main then

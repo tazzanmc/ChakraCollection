@@ -25,7 +25,7 @@ SMODS.Joker{ -- +$ equal to destroyed joker's rarity
         },
     },
     loc_vars = function(self, info_queue, card)
-        local copying = card.ability.extra.copying
+        local copying = G.GAME.last_destroyed_joker
         info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
         info_queue[#info_queue+1] = {key = 'chak_ethereal', set = 'Other'}
         if copying ~= nil then
@@ -35,11 +35,15 @@ SMODS.Joker{ -- +$ equal to destroyed joker's rarity
     end,
     calculate = function(self,card,context)
         if context.joker_type_destroyed and context.cardarea == G.jokers and not context.blueprint then
-            card.ability.extra.copying = context.card.config.center_key
-            sendDebugMessage("copying:" .. card.ability.extra.copying, "CHAK")
+            G.GAME.last_destroyed_joker = context.card.config.center_key
+            sendDebugMessage("copying:" .. G.GAME.last_destroyed_joker, "CHAK")
+            return {
+                message = G.localization.descriptions.Joker[G.GAME.last_destroyed_joker].name or "None",
+                colour = G.C.FILTER
+            }
         end
-        if context.ending_shop and card.ability.extra.copying ~= nil then
-            local copying = card.ability.extra.copying
+        if context.ending_shop and G.GAME.last_destroyed_joker ~= nil then
+            local copying = G.GAME.last_destroyed_joker
             if G.P_CENTERS[copying].rarity == "chak_Token" then
                 local copied_joker = SMODS.add_card {
                     area = G.jokers,

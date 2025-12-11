@@ -58,6 +58,8 @@ return {
             chak_ui_requires_restart = "- Requires Restart -",
             chak_ui_no_requires_restart = "- No Restart Required -",
             chak_ui_enable_debug = "Enable Debug",
+            chak_ui_enable_acorns = "Enable Acorns",
+            chak_ui_enable_bells = "Enable Bells",
             chak_ui_me = "Created by",
             chak_ui_discord = "Discord Help",
             chak_ui_mods = "Ref'd Mods",
@@ -70,6 +72,14 @@ return {
             chak_a_discards = "+#1# Discards",
             chak_a_discards_minus = "-#1# Discards",
             chak_a_hands_minus = "-#1# Hands",
-        }
+        },
+        suits_singular = {
+            chak_Acorns = "Acorn",
+            chak_Bells = 'Bell'
+        },
+        suits_plural = {
+            chak_Acorns = "Acorns",
+            chak_Bells = 'Bells'
+        },
     }
 }

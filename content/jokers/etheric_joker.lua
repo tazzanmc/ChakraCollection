@@ -18,5 +18,6 @@ CHAK_UTIL.TokenJoker{ -- Always destroyed instead of ethereal
     perishable_compat = true, --can it be perishable
     loc_vars = function(self, info_queue, center)
       info_queue[#info_queue+1] = {key = 'chak_ethereal', set = 'Other'}
+      info_queue[#info_queue+1] = {key = 'chak_token_joker', set = 'Other'}
     end
 }

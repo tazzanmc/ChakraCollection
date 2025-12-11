@@ -53,6 +53,7 @@ SMODS.Joker{ -- Destroy right Joker and replace it with rand Joker of rarity
                         G.GAME.joker_buffer = 0
                         -- See note about SMODS Scaling Manipulation on the wiki
                         card:juice_up(0.8, 0.8)
+                        right_joker.getting_sliced()
                         right_joker:start_dissolve({ HEX("57ecab") }, nil, 1.6)
                         return true
                     end

@@ -18,7 +18,7 @@ SMODS.Joker { -- Gain mult for each pair in played hand. Reset after beating bos
     pos = {x = 0, y = 6},
     config = {
         extra = {
-            mult_gain = 3,
+            mult_gain = 2,
             mult = 0,
             ranks = {}
         }

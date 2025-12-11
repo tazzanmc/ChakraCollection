@@ -1,4 +1,4 @@
-SMODS.Joker{ -- Dupe used Spectrals from packs
+SMODS.Joker{ -- All Ethereal Jokers are Negative
     key = 'omicron', --joker key
     loc_txt = { -- local text
         name = 'Omicron',
@@ -30,7 +30,7 @@ SMODS.Joker{ -- Dupe used Spectrals from packs
         local has_omicron = 0
         for i = 1, #G.jokers.cards do
             if G.jokers.cards[i].config.center.key == "chak_omicron" then
-                local has_omicron = has_omicron + 1
+                has_omicron = has_omicron + 1
             end
         end
         if has_omicron <= 1 then

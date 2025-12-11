@@ -29,7 +29,7 @@ SMODS.Joker { -- 100 chips, lose 15 per discard. Reset after beating boss
             card.ability.extra.chips = card.ability.extra.chips - card.ability.extra.chip_loss
             return {
                 colour = G.C.BLUE,
-                message = "Downgraded!"
+                message = "-" .. card.ability.extra.chip_loss
             }
         end
         if context.joker_main then

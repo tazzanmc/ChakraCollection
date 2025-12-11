@@ -13,7 +13,7 @@ position = "at"
 payload = '''
     if next(eval) then effects[#effects+1] = eval end'''
 
-[[patches]] #   CHAK
+[[patches]] #   CHAK - Ethereal sticker only appears in ethereal stake
 [patches.pattern]
 target = "functions/common_events.lua"
 pattern = '''
@@ -27,7 +27,7 @@ if G.GAME.modifiers.enable_ethereal_in_shop and pseudorandom((area == G.pack_car
     card:add_sticker('chak_ethereal', true)
 end'''
 
-[[patches]]  #   CHAK
+[[patches]]  #   CHAK - Banned keys in run
 [patches.pattern]
 target = "functions/common_events.lua"
 pattern = "if add and not G.GAME.banned_keys[v.key] then "
@@ -38,3 +38,34 @@ if G.GAME.chak.banned_run_keys[v.key] then
   add = nil
 end
 '''
+[[patches]]  #   CHAK - Black Seal -- Thank you somethingcom515!
+[patches.pattern]
+target = '''functions/state_events.lua'''
+pattern = '''
+for k, v in ipairs(G.play.cards) do
+    if (not v.shattered) and (not v.destroyed) then 
+        draw_card(G.play,G.discard, it*100/play_count,'down', false, v)
+        it = it + 1
+    end
+end
+'''
+position = "at"
+payload = '''
+local blackcards = {}
+for k, v in ipairs(G.play.cards) do
+    if (not v.shattered) and (not v.destroyed) then 
+        if v:get_seal() ~= 'chak_black_seal' then
+            draw_card(G.play,G.discard, it*100/play_count,'down', false, v)
+            it = it + 1
+        else
+            table.insert(blackcards, v)
+            it = it + 1
+        end
+    end
+end
+if #blackcards > 0 then
+    G.FUNCS.draw_from_play_to_hand(blackcards)
+end
+'''
+overwrite = true
+match_indent = true

@@ -18,7 +18,7 @@ SMODS.Joker { -- Gain chips for Spade in hand. Reset after beating boss
     pos = {x = 0, y = 7},
     config = {
         extra = {
-            chip_gain = 25,
+            chip_gain = 15,
             chips = 0,
             ranks = {}
         }

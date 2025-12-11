@@ -20,24 +20,25 @@ SMODS.Joker{ -- xMult per destroyed Joker
     perishable_compat = true, --can it be perishable
     config = { 
         extra = {
-          Xmult_gain = 1,
+          Xmult_gain = 0.15,
           Xmult = 1 --configurable value
         }
       },
-      loc_vars = function(self,info_queue,card)
-        return {vars = {card.ability.extra.Xmult_gain, card.ability.extra.Xmult}} --#1# is replaced with card.ability.extra.Xmult
+    loc_vars = function(self,info_queue,card)
+        return {vars = {card.ability.extra.Xmult_gain, (card.ability.extra.Xmult + ((G.GAME.jokers_destroyed or 0) * card.ability.extra.Xmult_gain))}} --#1# is replaced with card.ability.extra.Xmult
     end,
     calculate = function(self,card,context)
         if context.joker_main then
             return {
                 card = card,
-                Xmult_mod = card.ability.extra.Xmult,
-                message = 'X' .. card.ability.extra.Xmult,
+                xmult = (card.ability.extra.Xmult + ((G.GAME.jokers_destroyed or 0) * card.ability.extra.Xmult_gain))
+            }
+        end
+        if context.joker_type_destroyed then
+            return {
+                message = 'X' .. (card.ability.extra.Xmult + (((G.GAME.jokers_destroyed or 0) + card.ability.extra.Xmult ) * card.ability.extra.Xmult_gain)),
                 colour = G.C.MULT
             }
         end
-    end,
-    in_pool = function(self, args) -- Don't appear while this joker's broken
-        return false
     end
 }

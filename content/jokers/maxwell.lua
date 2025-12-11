@@ -31,7 +31,7 @@ SMODS.Joker { -- Gain mult for discarded hearts. Reset after beating boss
             card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
             return {
                 colour = G.C.RED,
-                message = "Upgraded!"
+                message = "+" .. card.ability.extra.mult_gain
             }
         end
         if context.joker_main then

@@ -21,27 +21,27 @@ SMODS.Joker{ -- Seal adjacent Jokers when sold
     config = {
         extra = {
             seals = {
-                white_seal = 'chak_white_seal',
-                red_seal = 'chak_red_seal',
-                green_seal = 'chak_green_seal',
-                black_seal = 'chak_black_seal',
-                blue_seal = 'chak_blue_seal',
-                purple_seal = 'chak_purple_seal',
-                orange_seal = 'chak_orange_seal',
-                gold_seal = 'chak_gold_seal'
+                white_seal = 'chak_white_joker_seal',
+                red_seal = 'chak_red_joker_seal',
+                green_seal = 'chak_green_joker_seal',
+                black_seal = 'chak_black_joker_seal',
+                blue_seal = 'chak_blu_jokere_seal',
+                purple_seal = 'chak_purple_joker_seal',
+                orange_seal = 'chak_orange_joker_seal',
+                gold_seal = 'chak_gold_joker_seal'
             }
         }
     },
     loc_vars = function(self, info_queue, card)
         --[[
-        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.white_seal]
-        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.red_seal]
-        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.green_seal]
-        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.black_seal]
-        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.blue_seal]
-        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.purple_seal]
-        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.orange_seal]
-        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.gold_seal]
+        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.white_joker_seal]
+        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.red_joker_seal]
+        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.green_joker_seal]
+        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.black_joker_seal]
+        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.blue_joker_seal]
+        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.purple_joker_seal]
+        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.orange_joker_seal]
+        info_queue[#info_queue+1] = G.P_SEALS[card.ability.extra.seals.gold_joker_seal]
         ]]
     end,
     calculate = function(self,card,context)

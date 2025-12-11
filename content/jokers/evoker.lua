@@ -3,7 +3,7 @@ SMODS.Joker{ -- Spawn common, uncommon, rare, negative, ethereal jokers
     loc_txt = { -- local text
         name = 'Evoker',
         text = {
-            "Create a random {C:blue}Common{},",
+            "Create #1# random {C:blue}Common{},",
             "{C:green}Uncommon{}, and {C:red}Rare",
             "Joker each round, all",
             "{C:dark_edition}Negative{} and {C:chak_sticker_ethereal,E:2}Ethereal"
@@ -19,42 +19,50 @@ SMODS.Joker{ -- Spawn common, uncommon, rare, negative, ethereal jokers
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
     eternal_compat = true, --can it be eternal
     perishable_compat = true, --can it be perishable
-    loc_vars = function(self, info_queue, center)
+    config = {
+        extra = {
+            iterations = 1
+        }
+    },
+    loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
-        info_queue[#info_queue+1] = {key = 'chak_ethereal', set = 'Other'}
+        info_queue[#info_queue + 1] = {key = 'chak_ethereal', set = 'Other'}
+        return { vars = { card.ability.extra.iterations } }
     end,
     calculate = function(self, card, context)
         if context.setting_blind then
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    local evoked_joker = nil 
-                    evoked_joker = SMODS.add_card {
-                        set = 'Joker',
-                        rarity = 'Common',
-                        key_append = 'chak_evoker',
-                        edition = 'e_negative',
-                        allow_duplicates = false
-                    }
-                    evoked_joker:add_sticker('chak_ethereal', true) -- Have to use add_sticker because 'stickers =' from add_card dont work with ethereal
-                    evoked_joker = SMODS.add_card {
-                        set = 'Joker',
-                        rarity = 'Uncommon',
-                        key_append = 'chak_evoker',
-                        edition = 'e_negative',
-                        allow_duplicates = false
-                    }
-                    evoked_joker:add_sticker('chak_ethereal', true)
-                    evoked_joker = SMODS.add_card {
-                        set = 'Joker',
-                        rarity = 'Rare',
-                        key_append = 'chak_evoker',
-                        edition = 'e_negative',
-                        allow_duplicates = false
-                    }
-                    evoked_joker:add_sticker('chak_ethereal', true)
-                    return true
-                end
-            }))
+            for i = 1, card.ability.extra.iterations do
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        local evoked_joker = nil 
+                        evoked_joker = SMODS.add_card {
+                            set = 'Joker',
+                            rarity = 'Common',
+                            key_append = 'chak_evoker',
+                            edition = 'e_negative',
+                            allow_duplicates = false
+                        }
+                        evoked_joker:add_sticker('chak_ethereal', true) -- Have to use add_sticker because 'stickers =' from add_card dont work with ethereal
+                        evoked_joker = SMODS.add_card {
+                            set = 'Joker',
+                            rarity = 'Uncommon',
+                            key_append = 'chak_evoker',
+                            edition = 'e_negative',
+                            allow_duplicates = false
+                        }
+                        evoked_joker:add_sticker('chak_ethereal', true)
+                        evoked_joker = SMODS.add_card {
+                            set = 'Joker',
+                            rarity = 'Rare',
+                            key_append = 'chak_evoker',
+                            edition = 'e_negative',
+                            allow_duplicates = false
+                        }
+                        evoked_joker:add_sticker('chak_ethereal', true)
+                        return true
+                    end
+                }))
+            end
             return {
                 message = 'Summoned!',
                 colour = G.C.CHAK_ETHEREAL,

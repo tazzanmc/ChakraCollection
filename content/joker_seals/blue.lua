@@ -1,5 +1,6 @@
 SMODS.Seal{
-    key = 'blue_seal',sets = { Joker = true },
+    key = 'blue_joker_seal',
+    sets = { Joker = true },
     atlas = 'JokerSeals',
     pos = { x = 0, y = 1 },
     loc_txt = {

@@ -1,4 +1,4 @@
-SMODS.Joker{ -- Spawn common, uncommon, rare, negative, ethereal jokers
+SMODS.Joker{ -- Spawn token jokers
     key = 'token_machine', --joker key
     loc_txt = { -- local text
         name = 'Token Machine',
@@ -17,7 +17,7 @@ SMODS.Joker{ -- Spawn common, uncommon, rare, negative, ethereal jokers
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
     eternal_compat = true, --can it be eternal
     perishable_compat = true, --can it be perishable
-    loc_vars = function(self, info_queue, center)
+    loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = {key = 'chak_ethereal', set = 'Other'}
         info_queue[#info_queue+1] = {key = 'chak_token_joker', set = 'Other'}
     end,

@@ -50,22 +50,27 @@ SMODS.Joker{ -- Copy left. debuff right
                 if G.jokers.cards[i - 1] ~= nil then -- Ensure copy Joker exists
                     other_joker = G.jokers.cards[i - 1] 
                 end
-                if G.jokers.cards[i + 1] ~= nil then -- Ensure debuff Joker exists
+                if G.jokers.cards[i + 1] ~= nil and G.jokers.cards[i + 1] ~= card then -- Ensure debuff Joker exists and isn't itself
                     debuff_joker = G.jokers.cards[i + 1] 
                     debuff_joker.ability.two_faced_chosen = true
                 end
             end
         end
-        if debuff_joker ~= nil and not (debuff_joker.debuff and debuff_joker.debuffed_by_blind) then -- Debuff chosen Joker if not aready debuffed
-            if debuff_joker.ability.two_faced_chosen and debuff_joker:get_seal() ~= "chak_orange_seal"  then
-                SMODS.debuff_card(debuff_joker, true, "two-faced")
+        if context.debuff_card and context.debuff_card == debuff_joker then
+            if context.blueprint then
+                return nil
             end
-        end
-        for i = 1, #G.jokers.cards do -- Undebuff previously chosen Jokers which aren't currently chosen
-            if G.jokers.cards[i].ability.two_faced_chosen and G.jokers.cards[i] ~= debuff_joker then
-                if not G.jokers.cards[i].debuffed_by_blind then
-                    G.jokers.cards[i].ability.two_faced_chosen = false
-                    SMODS.debuff_card(G.jokers.cards[i], false, "two-faced")
+            if debuff_joker ~= nil and not (debuff_joker.debuff and debuff_joker.debuffed_by_blind) then -- Debuff chosen Joker if not aready debuffed
+                if debuff_joker.ability.two_faced_chosen and debuff_joker:get_seal() ~= "chak_orange_seal"  then
+                    return { debuff = true }
+                end
+            end
+            for i = 1, #G.jokers.cards do -- Undebuff previously chosen Jokers which aren't currently chosen
+                if G.jokers.cards[i].ability.two_faced_chosen and G.jokers.cards[i] ~= debuff_joker then
+                    if not G.jokers.cards[i].debuffed_by_blind then
+                        G.jokers.cards[i].ability.two_faced_chosen = false
+                        return { debuff = false }
+                    end
                 end
             end
         end
