@@ -5,7 +5,7 @@ A [Balatro](https://store.steampowered.com/app/2379780/Balatro/) mod by [tazzan]
 # Requires [Steamodded](https://github.com/Steamodded/smods)!
 ***IF YOU PLAY A BETA BUILD SET "PIXEL ART SMOOTHING" TO OFF PRIOR TO ENABLING THE MOD, OTHERWISE YOU MAY CRASH!!***
 
-[Let's chat on the ChakraCollection forum in the Balatro Discrod!](https://discord.com/channels/1116389027176787968/1414325508891738263)
+[Let's chat on the ChakraCollection forum in the Balatro Discord!](https://discord.com/channels/1116389027176787968/1414325508891738263)
 
 # Additions:
 - A new consumable card type: Chakra cards! All about modifying your Jokers in new, unique ways
